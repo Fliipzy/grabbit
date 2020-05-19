@@ -1,5 +1,5 @@
 # Project specific
-database/authentication.json
+configs/authentication.json
 
 # Logs
 logs
