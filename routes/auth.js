@@ -9,7 +9,7 @@ router.post('/authenticate', (req, res) => {
 })
 
 router.get('/signup', (req, res) => {
-    res.render('/auth/signup.ejs')
+    res.render('auth/signup.ejs')
 })
 
 router.post('/signup', (req, res) => {

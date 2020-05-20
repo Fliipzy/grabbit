@@ -1,11 +1,14 @@
 const router = require('express').Router()
+const User = require('../models/User.js')
 
-router.get('/', (req, res) => {
-    res.render('users.ejs')
+router.get('/', async (req, res) => {
+    let users = await User.query()
+    console.log(users)
+    res.render('user/users.ejs', { users : users })
 })
 
 router.get('/:id', (req, res) => {
-    res.render('user.ejs')
+    res.render('user/user.ejs')
 })
 
 router.post('/update/:id', (req, res) => {
