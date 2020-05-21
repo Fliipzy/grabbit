@@ -9,6 +9,7 @@ class User extends Model {
     static get relationMappings() {
 
         const UserInformation = require('./UserInformation.js')
+        const UserRole = require('./UserRole.js')
         const Store = require('./Store.js')
         
         return {
@@ -16,10 +17,19 @@ class User extends Model {
                 relation: Model.BelongsToOneRelation,
                 modelClass: UserInformation,
                 join: {
-                    from: 'user.id',
+                    from: 'user.user_information_id',
                     to: 'user_information.id' 
                 }
             },
+            role: {
+                relation: Model.BelongsToOneRelation,
+                modelClass: UserRole,
+                join: {
+                    from: 'user.role_id',
+                    to: 'user_role.id'
+                }
+            }
+            ,
             stores : {
                 relation: Model.ManyToManyRelation,
                 modelClass: Store,

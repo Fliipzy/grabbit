@@ -3,7 +3,6 @@ const User = require('../models/User.js')
 
 router.get('/', async (req, res) => {
     let users = await User.query()
-    console.log(users)
     res.render('user/users.ejs', { users : users })
 })
 

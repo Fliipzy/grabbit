@@ -8,7 +8,7 @@ class UserInformation extends Model {
     
     static get relationMappings() {
 
-        const user = require('./User.js')
+        const User = require('./User.js')
 
         return {
             user : {
