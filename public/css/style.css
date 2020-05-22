@@ -6,13 +6,23 @@ body {
     background-color:  rgb(204, 204, 204);
 }
 
+/* Form default style */
+
 div.form-default {
     padding: 1em;
     border-radius: 5px;
     box-shadow: rgb(158, 158, 158) 0px 0px 3px 1px;
 }
 
-/*Login page*/
+div.form-default h3 {
+    color: rgb(76, 150, 215);
+}
+
+div.form-default a {
+    color: rgb(76, 150, 215);
+}
+
+/* Login page */
 
 div.form-login {
     background-color: white;
@@ -28,5 +38,38 @@ div.form-login div#logo {
 }
 
 div.form-login div#options {
+    text-align: right;
+}
+
+/* Forgot page */
+
+div.form-forgot {
+    background-color: white;
+    margin-top: 1em;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 30em;
+}
+
+div.form-forgot div#logo {
+    margin: auto;
+    text-align: center;
+}
+
+div.form-forgot div#options {
+    text-align: right;
+}
+
+/* Form page */
+
+div.form-signup {
+    background-color: white;
+    margin-top: 1em;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 30em;
+}
+
+div.form-signup div#options {
     text-align: right;
 }

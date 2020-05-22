@@ -5,20 +5,39 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Grabbit - Forgot password</title>
 
-    <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <div id="main-container" class="container">
-
-        <form action="/forgot" method="post">
-            <div class="form-group">
-                <label for="email">Email</label>
-                <input class="form-control" type="text" name="email" id="email">
-            </div>
-            <button class="btn btn-primary" type="submit">Send mail</button>
-        </form>
+    
+    <div class="container">
         
+        <div class="form-default form-forgot">
+            
+            <div id="logo">
+                <img src="images/grabbitforgot.png" width="140" alt="">
+            </div> 
+
+            <h3>Forgot password</h3>
+            <form action="/forgot" method="post">
+                
+                <div class="form-group">
+                    <label for="email">E-mail</label>
+                    <input class="form-control" type="email" name="email">
+                </div>
+
+                <button class="btn btn-primary" type="submit">Send</button>
+
+            </form>
+
+            <div id="options">
+                <span>
+                    <a href="/login">Go back</a>
+                </span>
+            </div>
+
+        </div>
+
     </div>
 
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
