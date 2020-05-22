@@ -28,8 +28,8 @@ router.post('/login', ratelimits.login, async (req, res) => {
             req.session.role = users[0].role
         }
     }
-    //Redirect to login page again
-    res.redirect('/login#failed')
+    //Redirect to login page with status code 401
+    res.status(401).redirect('/login#failed')
 })
 
 router.get('/logout', (req, res) => {
@@ -73,7 +73,29 @@ router.post('/signup', ratelimits.signup, async (req, res) => {
 
     //Redirect to login
     res.redirect('/login#signup-success')
+})
 
+router.get('/forgot', (req, res) => {
+    res.render('auth/forgot.ejs')
+})
+
+router.post('/forgot', async (req, res) => {
+    //Retrieve email from request body
+    let { email } = req.body
+
+    //Try to find user with that email in db
+    let user = await User.query()
+        .select('user.username', 'user.password', 'information.email')
+        .joinRelated('information')
+        .where('information.email', email)
+        .first()
+    
+    //If a user with that email has been found
+    if (user != undefined) {
+        
+    }
+
+    res.redirect('/forgot')
 })
 
 module.exports = router
