@@ -60,7 +60,7 @@ div.form-forgot div#options {
     text-align: right;
 }
 
-/* Form page */
+/* Sign up page */
 
 div.form-signup {
     background-color: white;
@@ -72,4 +72,10 @@ div.form-signup {
 
 div.form-signup div#options {
     text-align: right;
+}
+
+
+div.form-signup div#logo {
+    margin: auto;
+    text-align: center;
 }

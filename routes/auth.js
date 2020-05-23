@@ -2,6 +2,7 @@ const router = require('express').Router()
 const ratelimits = require('../configs/limiters.js')
 const User = require('../models/User.js')
 const UserInformation = require('../models/UserInformation.js')
+const { v4: uuid } = require('uuid')
 const bcrypt = require('bcrypt')
 const rounds = 12
 
@@ -79,23 +80,32 @@ router.get('/forgot', (req, res) => {
     res.render('auth/forgot.ejs')
 })
 
+const knex = require('../database/knexfile.js')
+
 router.post('/forgot', async (req, res) => {
     //Retrieve email from request body
     let { email } = req.body
 
     //Try to find user with that email in db
     let user = await User.query()
-        .select('user.username', 'user.password', 'information.email')
+        .select('username', 'information.email')
         .joinRelated('information')
         .where('information.email', email)
         .first()
     
     //If a user with that email has been found
     if (user != undefined) {
-        
+
+        //Generate universally unique identifier
+        let id = uuid()
+
     }
 
     res.redirect('/forgot')
+})
+
+router.get('/reset/:uid', (req, res) => {
+
 })
 
 module.exports = router

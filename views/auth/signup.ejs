@@ -1,43 +1,58 @@
 <%- include('../partials/header.ejs', {
-        title: 'Grabbit - Sign up'
+        title: 'Grabbit - Sign up',
+        styles: [
+            'https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css',
+            'css/style.css'
+        ]
 }) %>
 
     <div class="container">
 
         <div class="form-default form-signup">
             
+            <div id="logo">
+                <img width="130" src="images/signin.png" alt="">
+            </div>
+
             <h3>Sign up</h3>
     
             <form action="/signup" method="post">
                 
                 <div class="form-group">
                     <label for="username">Username</label>
-                    <input class="form-control" type="text" name="username"> 
+                    <input class="form-control" type="text" name="username" required> 
                 </div>
-    
-                <div class="form-group">
-                    <label for="password">Password</label>
-                    <input class="form-control" type="password" name="password"> 
+                
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+
+                            <label for="password">Password</label>
+                            <input class="form-control" type="password" name="password" id="password" required>
+                            <small id="passlabel" class="form-text text-muted">6 or more characters.</small> 
+
+                    </div>
+                    <div class="form-group col-md-6">
+
+                            <label for="repassword">Re-enter password</label>
+                            <input class="form-control" type="password" name="repassword" id="repassword" required>
+
+                    </div>
                 </div>
-    
-                <div class="form-group">
-                    <label for="re-password">Re-enter password</label>
-                    <input class="form-control" type="password" name="re-password">
-                </div>
-    
+
                 <div class="form-group">
                     <label for="firstname">Firstname</label>
-                    <input class="form-control" type="text" name="firstname">
+                    <input class="form-control" type="text" name="firstname" required>
                 </div>
         
                 <div class="form-group">
                     <label for="lastname">Lastname</label>
-                    <input class="form-control" type="text" name="lastname">
+                    <input class="form-control" type="text" name="lastname" required>
                 </div>
     
                 <div class="form-group">
                     <label for="email">Email</label>
-                    <input class="form-control" type="email" name="email">
+                    <input class="form-control" type="email" name="email" required>
+                    <small class="form-text text-muted">We'll never share your email with anyone else.</small>
                 </div>
         
                 <button class="btn btn-primary" type="submit">Sign up</button>
@@ -54,5 +69,12 @@
         </div>
 
     </div>
-
-<%- include('../partials/footer.ejs') %>
+    
+<%- include('../partials/footer.ejs', {
+    scripts : [
+        'https://code.jquery.com/jquery-3.5.1.js',
+        'https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js',
+        'https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js',
+        'js/signup.js'
+    ]
+}) %>
