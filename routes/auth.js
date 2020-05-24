@@ -2,7 +2,24 @@ const router = require('express').Router()
 const ratelimits = require('../configs/limiters.js')
 const User = require('../models/User.js')
 const UserInformation = require('../models/UserInformation.js')
-const { v4: uuid } = require('uuid')
+
+//Mail reset dependencies
+const { v4: uuidv4 } = require('uuid')
+const nodemailer = require('nodemailer')
+const emailCreds = require('../configs/mail_credentials.json')
+
+//Transporter object
+const transporter = nodemailer.createTransport({
+    host: "smtp.gmail.com",
+    port: 465,
+    secure: true,
+    auth : {
+        user: emailCreds['email'],
+        pass: emailCreds['password']
+    }
+})
+
+//Encryption
 const bcrypt = require('bcrypt')
 const rounds = 12
 
@@ -86,22 +103,43 @@ router.post('/forgot', async (req, res) => {
     //Retrieve email from request body
     let { email } = req.body
 
-    //Try to find user with that email in db
+    //Try to find user where emails match, select user.id, user.username & information.email
     let user = await User.query()
-        .select('username', 'information.email')
+        .select('user.id', 'user.username', 'information.email')
         .joinRelated('information')
         .where('information.email', email)
         .first()
     
-    //If a user with that email has been found
+    //If a user has been found
     if (user != undefined) {
 
         //Generate universally unique identifier
-        let id = uuid()
+        let uuid = uuidv4()
 
+        //Use knex to insert into 'user_reset' table
+        await knex('grabbit.user_reset').insert({ user_id: user.id, uuid: uuid })
+
+
+        //Setup mail options
+        let mailOptions = {
+            from: '"Grabbit Bot 🤖" <grabbitbot@gmail.com>',
+            to: user.email,
+            subject: 'Password reset',
+            text: `Hi ${user.username}, here's your password reset link:\n https://localhost:3000/reset/${uuid}`
+        }
+
+        //Send mail
+        transporter.sendMail(mailOptions, (error, info) => {
+            if (error) {
+                console.log(error)
+                res.json({"result" : "ERROR"})
+            }
+            console.log(info)
+            res.json({"result" : "SUCCESS"})
+        })
     }
 
-    res.redirect('/forgot')
+    res.json({"result" : "no match"})
 })
 
 router.get('/reset/:uid', (req, res) => {
