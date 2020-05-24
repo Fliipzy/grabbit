@@ -142,8 +142,59 @@ router.post('/forgot', async (req, res) => {
     res.json({"result" : "no match"})
 })
 
-router.get('/reset/:uid', (req, res) => {
+router.get('/reset/:uuid', async (req, res) => {
 
+    //Retrieve the uuid from the request
+    let { uuid } = req.params
+
+    //Try to select reset-token where the given uuid matches
+    let token = await knex('user_reset')
+        .select('user_id', 'uuid', 'created_at')
+        .where('uuid', uuid)
+        .first()
+        
+    //Check if token is not undefined
+    if (token != undefined) {
+        res.render('auth/reset.ejs', { token: { user_id: token.user_id, uuid: token.uuid } })
+    }
+    else {
+        res.status(404).send('No reset token with that UUID')
+    }
+})
+
+router.post('/reset/:uuid', async (req, res) => {
+
+    //Retrieve uuid & password from req params & body
+    let { uuid } = req.params
+    let { password } = req.body
+
+    //Try to select reset-token where the given uuid matches
+    let token = await knex('user_reset')
+        .select('user_id', 'uuid', 'used')
+        .where('uuid', uuid)
+        .first()
+
+    //If token is not undefined
+    if (token != undefined) {
+        
+        //If token is already used
+        if (token.used) {
+            res.status(404).send('Reset token already used!')
+        }
+
+        //Hash the password
+        let hashedPassword = await bcrypt.hash(password, rounds)
+
+        //Reset password
+        let result = await User.query()
+            .patch({ password: hashedPassword})
+            .where('id', token.user_id)
+        
+        //If one row was updated
+        if (result) {
+            res.redirect('/login')
+        }
+    }
 })
 
 module.exports = router
