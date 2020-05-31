@@ -11,6 +11,7 @@ class UserInformation extends Model {
         const User = require('./User.js')
 
         return {
+            //The user this information belongs to
             user : {
                 relation: Model.HasOneRelation,
                 modelClass: User,

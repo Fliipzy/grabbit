@@ -13,6 +13,7 @@ class User extends Model {
         const Store = require('./Store.js')
         
         return {
+            //Information about the user
             information: {
                 relation: Model.BelongsToOneRelation,
                 modelClass: UserInformation,
@@ -21,6 +22,7 @@ class User extends Model {
                     to: 'user_information.id' 
                 }
             },
+            //The users role
             role: {
                 relation: Model.BelongsToOneRelation,
                 modelClass: UserRole,
@@ -28,8 +30,8 @@ class User extends Model {
                     from: 'user.role_id',
                     to: 'user_role.id'
                 }
-            }
-            ,
+            },
+            //Which stores the user administrates
             stores : {
                 relation: Model.ManyToManyRelation,
                 modelClass: Store,

@@ -9,8 +9,10 @@ class Store extends Model {
     static get relationMappings() {
 
         const User = require('./User.js')
+        const Product = require('./Product.js')
 
         return {
+            //Administrators of the store
             admins: {
                 relation: Model.ManyToManyRelation,
                 modelClass: User,
@@ -21,6 +23,15 @@ class Store extends Model {
                         to: 'store_admin.admin_id'
                     },
                     to: 'user.id'
+                }
+            },
+            //The stores products
+            products: {
+                relation: Model.HasManyRelation,
+                modelClass: Product,
+                join: {
+                    from: 'store.id',
+                    to: 'product.store_id'
                 }
             }
         }
