@@ -6,6 +6,9 @@ class Review extends Model {
         return 'review'
     }
     
+    static get relationMappings() {
+        
+    }
 } 
 
 module.exports = Review

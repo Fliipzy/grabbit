@@ -40,6 +40,9 @@ app.use('/users', require('./routes/user.js'))
 app.use('/stores', require('./routes/store.js'))
 app.use('/products', require('./routes/product.js'))
 
+//Setup REST API routes
+app.use('/api/v1/products', require('./routes/api/product.js'))
+
 //Start express server
 app.listen(PORT, (error) => {
     if (error) {
