@@ -24,7 +24,7 @@ const bcrypt = require('bcrypt')
 const rounds = 12
 
 router.get('/login', (req, res) => {
-    res.render('auth/login.ejs')
+    res.render('auth/login.ejs', { session : req.session })
 })
 
 router.post('/login', ratelimits.login, async (req, res) => {
@@ -33,37 +33,46 @@ router.post('/login', ratelimits.login, async (req, res) => {
     let { username, password } = req.body
 
     //Try to find a user in db where username matches
-    let users = await User.query()
-        .select('user.username', 'user.password', 'role.role')
+    let user = await User.query()
+        .select('user.id', 'user.username', 'user.password', 'role.role')
         .joinRelated('role')
         .where('username', username)
-        .limit(1)
+        .first()
 
     //If user has been found
-    if (users.length > 0) {
+    if (user != undefined) {
 
         //Compare given password with hashed password
-        if (await bcrypt.compare(password, users[0].password)) {
+        if (await bcrypt.compare(password, user.password)) {
 
-            //Authenticate the session & set role
+            //Append these attributes to the session object
             req.session.authenticated = true
-            req.session.role = users[0].role
+            req.session.user = {
+                id: user.id,
+                username: user.username,
+                role: user.role
+            }
 
             //Redirect the authenticated user to the index
             res.status(200).redirect('/')
         }
+    } 
+    else {
+        //Redirect to login page with status code 401
+        res.status(401).redirect('/login#failed')
     }
-    //Redirect to login page with status code 401
-    res.status(401).redirect('/login#failed')
 })
 
 router.get('/logout', (req, res) => {
     //Destroy session
     req.session.destroy()
+
+    //Redirect to index
+    res.redirect('/')
 })
 
 router.get('/signup', (req, res) => {
-    res.render('auth/signup.ejs')
+    res.render('auth/signup.ejs', { session : req.session })
 })
 
 router.post('/signup', ratelimits.signup, async (req, res) => {
@@ -85,7 +94,7 @@ router.post('/signup', ratelimits.signup, async (req, res) => {
     //We can safely insert new user into db
     let hashedPassword = await bcrypt.hash(password, rounds)
 
-    //Use graphInsert to insert both user & userinformation
+    //Use insertGraph to insert both user & userinformation
     await User.query().insertGraph({
         username: username.toLowerCase(),
         password: hashedPassword,
@@ -101,7 +110,7 @@ router.post('/signup', ratelimits.signup, async (req, res) => {
 })
 
 router.get('/forgot', (req, res) => {
-    res.render('auth/forgot.ejs')
+    res.render('auth/forgot.ejs', { session : req.session })
 })
 
 const knex = require('../database/knexfile.js')
@@ -109,8 +118,6 @@ const knex = require('../database/knexfile.js')
 router.post('/forgot', async (req, res) => {
     //Retrieve email from request body
     let { email } = req.body
-
-    console.log(email)
 
     //Try to find user where emails match, select user.id, user.username & information.email
     let user = await User.query()
@@ -167,7 +174,7 @@ router.get('/reset/:uuid', async (req, res) => {
         
     //Check if token is not undefined
     if (token != undefined) {
-        res.render('auth/reset.ejs', { token: { user_id: token.user_id, uuid: token.uuid } })
+        res.render('auth/reset.ejs', { token: { user_id: token.user_id, uuid: token.uuid }, session : req.session })
     }
     else {
         res.status(404).send('No reset token with that UUID')

@@ -20,8 +20,14 @@
                 <a class="nav-link" href="#">Contact</a>
             </li>
         </ul>
+        <% if (session.authenticated == undefined) { %> 
         <form action="/login" method="GET" class="form-inline my-2 my-lg-0">
             <button id="auth-button" class="btn btn-outline-light my-2 my-sm-0" type="submit">Sign in</button>
         </form>
+        <% } else { %>
+        <form action="/logout" method="GET" class="form-inline my-2 my-lg-0">
+            <button id="auth-button" class="btn btn-outline-light my-2 my-sm-0" type="submit">Sign out</button>
+        </form>
+        <% } %>
     </div>
 </nav>

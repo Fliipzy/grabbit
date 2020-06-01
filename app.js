@@ -18,11 +18,12 @@ app.set('view engine', 'ejs')
 const session = require('express-session')
 const sessionConfig = require('./configs/session.json')
 
+//Use in-memory session store for now
 app.use(session({
     name: 'sid',
     secret: sessionConfig['secret'],
     resave: false,
-    saveUninitialized: false,
+    saveUninitialized: false,  
     cookie: {
         maxAge: 1000 * 60 * 60 * 24, //1 day
         secure: false
