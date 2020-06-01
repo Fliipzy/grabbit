@@ -19,7 +19,7 @@ const transporter = nodemailer.createTransport({
     }
 })
 
-//Encryption
+//Importing bcrypt to hash passwords
 const bcrypt = require('bcrypt')
 const rounds = 12
 

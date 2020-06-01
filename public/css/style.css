@@ -66,6 +66,17 @@ nav button#auth-button {
     font-family: 'Varela Round', sans-serif;
 }
 
+nav .nav-item {
+    position: relative;
+}
+
+nav span.pill {
+    position: relative;
+    padding-bottom: 2px;
+    top: -2px;
+    font-size: small;
+}
+
 /* Default form style */
 
 div.form-default {
