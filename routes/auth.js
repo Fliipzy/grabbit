@@ -28,6 +28,7 @@ router.get('/login', (req, res) => {
 })
 
 router.post('/login', ratelimits.login, async (req, res) => {
+
     //Retrieve login information
     let { username, password } = req.body
 
@@ -40,10 +41,16 @@ router.post('/login', ratelimits.login, async (req, res) => {
 
     //If user has been found
     if (users.length > 0) {
+
         //Compare given password with hashed password
         if (await bcrypt.compare(password, users[0].password)) {
+
+            //Authenticate the session & set role
             req.session.authenticated = true
             req.session.role = users[0].role
+
+            //Redirect the authenticated user to the index
+            res.status(200).redirect('/')
         }
     }
     //Redirect to login page with status code 401
@@ -103,13 +110,15 @@ router.post('/forgot', async (req, res) => {
     //Retrieve email from request body
     let { email } = req.body
 
+    console.log(email)
+
     //Try to find user where emails match, select user.id, user.username & information.email
     let user = await User.query()
         .select('user.id', 'user.username', 'information.email')
         .joinRelated('information')
         .where('information.email', email)
         .first()
-    
+
     //If a user has been found
     if (user != undefined) {
 
@@ -119,7 +128,6 @@ router.post('/forgot', async (req, res) => {
         //Use knex to insert into 'user_reset' table
         await knex('grabbit.user_reset').insert({ user_id: user.id, uuid: uuid })
 
-
         //Setup mail options
         let mailOptions = {
             from: '"Grabbit Bot 🤖" <grabbitbot@gmail.com>',
@@ -128,18 +136,22 @@ router.post('/forgot', async (req, res) => {
             text: `Hi ${user.username}, here's your password reset link:\n https://localhost:3000/reset/${uuid}`
         }
 
-        //Send mail
-        transporter.sendMail(mailOptions, (error, info) => {
+        //Send reset mail
+        transporter.sendMail(mailOptions, (error) => {
             if (error) {
-                console.log(error)
-                res.json({"result" : "ERROR"})
+                //Return status code 500 (Internal server error)
+                return res.status(500).send()
+            } 
+            else {
+                //Return status code 200 (OK)
+                return res.status(200).send()
             }
-            console.log(info)
-            res.json({"result" : "SUCCESS"})
         })
     }
-
-    res.json({"result" : "no match"})
+    else {
+        //Return status code 204 (No Content)
+       return res.status(204).send()
+    }
 })
 
 router.get('/reset/:uuid', async (req, res) => {
