@@ -7,6 +7,10 @@ const server = require('http').createServer(app)
 //Try get PORT env var else default 3000
 const PORT = process.env.PORT || 3000;
 
+//Setup helmet
+const helmet = require('helmet')
+app.use(helmet())
+
 //Setup bodyparsing
 const bodyparser = require('body-parser')
 app.use(bodyparser.urlencoded({extended: false}))

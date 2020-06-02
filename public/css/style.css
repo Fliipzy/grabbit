@@ -255,6 +255,10 @@ div.form-signup div#logo {
     margin-bottom: 4px;
 }
 
+#user-list-container {
+    height: 100%;
+}
+
 #user-list-header {
     padding: 5px;
     
@@ -272,7 +276,8 @@ div.form-signup div#logo {
 }
 
 #user-list {
-    height: 100%;
+    position: relative;
+    height: 93%;
 
     padding-top: 5px;
     padding-bottom: 5px;
@@ -280,6 +285,12 @@ div.form-signup div#logo {
     padding-left: 10px;
 
     background-color: rgb(235, 235, 235);
+
+    overflow-y: scroll;
+}
+
+#user-list p {
+    margin-bottom: 4px;
 }
 
 #chat-inputs-container {
