@@ -1,6 +1,9 @@
 const express = require('express')
 const app = express()
 
+//Create server
+const server = require('http').createServer(app)
+
 //Try get PORT env var else default 3000
 const PORT = process.env.PORT || 3000;
 
@@ -37,15 +40,25 @@ Model.knex(require('./database/knexfile.js'))
 //Setup routes
 app.use('/', require('./routes/auth.js'))
 app.use('/', require('./routes/index.js'))
+app.use('/gchat', require('./routes/gchat.js'))
 app.use('/users', require('./routes/user.js'))
 app.use('/stores', require('./routes/store.js'))
 app.use('/products', require('./routes/product.js'))
 
+//test delete
+app.get('/test', (req, res) => {
+    res.render('test.ejs', { session: req.session })
+})
+
 //Setup REST API routes
 app.use('/api/v1/products', require('./routes/api/product.js'))
 
+//Setup our gchat server
+const gchat = new (require('./gchat_server.js'))(server)
+gchat.startListening()
+
 //Start express server
-app.listen(PORT, (error) => {
+server.listen(PORT, (error) => {
     if (error) {
         console.log(error)
     }

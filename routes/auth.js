@@ -96,7 +96,7 @@ router.post('/signup', ratelimits.signup, async (req, res) => {
 
     //Use insertGraph to insert both user & userinformation
     await User.query().insertGraph({
-        username: username.toLowerCase(),
+        username: username,
         password: hashedPassword,
         information : {
             first_name: firstname,

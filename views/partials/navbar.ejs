@@ -9,39 +9,46 @@
     </button>
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
         <ul class="navbar-nav mr-auto">
+            
             <li class="nav-item active">
-                <a class="nav-link" href="#">Place order</a>
-            </li>
-            <li class="nav-item active">
-                <a class="nav-link" href="#">About</a>
-            </li>
-            <li class="nav-item active">
-                <a class="nav-link" href="#">Contact</a>
+                <a class="nav-link" href="#">Order food</a>
             </li>
 
+            <!--If session is authenticated-->
             <% if (session.authenticated == true) { %>
-                
+
+            <li class="nav-item active">
+                <a class="nav-link" href="/gchat">G-Chat <span class="pill badge badge-success">Beta</span> </a>
+            </li>
+
             <% } %>
 
         </ul>
 
         <div class="form-inline my-2 my-lg-0">
-            <% if (session.authenticated == undefined) { %> 
-                <!--Session is unauthenticated-->
-                <form action="/login" method="GET">
-                    <button id="auth-button" class="btn btn-outline-light my-2 my-sm-0" type="submit">Sign in</button>
-                </form>
+
+            <!--If session.authenticated attribute is undefined -->
+            <% if (session.authenticated == undefined) { %>
+
+            <form action="/login" method="GET">
+                <button id="auth-button" class="btn btn-outline-light my-2 my-sm-0" type="submit">Sign in</button>
+            </form>
+
+            <!--Session is authenticated i.e user is logged in-->
             <% } else { %>
-                <!--Session is authenticated i.e user is logged in-->
-                <ul class="navbar-nav mr-auto">
-                    <li class="nav-item active">
-                        <a class="nav-link" href="/gchat">G-Chat <span class="pill badge badge-success">Beta</span> </a>
-                    </li>
-                </ul>
-                <form action="/logout" method="GET">
-                    <button id="auth-button" class="btn btn-outline-light my-2 my-sm-0" type="submit">Sign out</button>
-                </form>
+
+            <div class="user-sign">
+                <span>
+                    <p><%- session.user.username%> <img src="svg/form/person.svg"></p>
+                </span>
+            </div>
+
+            <form action="/logout" method="GET">
+                <button id="auth-button" class="btn btn-outline-light my-2 my-sm-0" type="submit">Sign out</button>
+            </form>
+
             <% } %>
         </div>
 
