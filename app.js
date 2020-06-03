@@ -1,34 +1,34 @@
-const express = require('express')
+const express = require("express")
 const app = express()
 
 //Create server
-const server = require('http').createServer(app)
+const server = require("http").createServer(app)
 
 //Try get PORT env var else default 3000
 const PORT = process.env.PORT || 3000;
 
 //Setup helmet
-const helmet = require('helmet')
+const helmet = require("helmet")
 app.use(helmet())
 
 //Setup bodyparsing
-const bodyparser = require('body-parser')
+const bodyparser = require("body-parser")
 app.use(bodyparser.urlencoded({extended: false}))
 
 //Static serving from ./public
-app.use(express.static('public'))
+app.use(express.static("public"))
 
 //Setup ejs view engine
-app.set('view engine', 'ejs')
+app.set("view engine", "ejs")
 
 //Setup express-session
-const session = require('express-session')
-const sessionConfig = require('./configs/session.json')
+const session = require("express-session")
+const sessionConfig = require("./configs/session.json")
 
 //Use in-memory session store for now
 app.use(session({
-    name: 'sid',
-    secret: sessionConfig['secret'],
+    name: "sid",
+    secret: sessionConfig["secret"],
     resave: false,
     saveUninitialized: false,  
     cookie: {
@@ -38,27 +38,32 @@ app.use(session({
 }))
 
 //Setup Objection & Knex
-const { Model } = require('objection')
-Model.knex(require('./database/knexfile.js'))
+const { Model } = require("objection")
+Model.knex(require("./database/knexfile.js"))
 
 //Setup routes
-app.use('/', require('./routes/auth.js'))
-app.use('/', require('./routes/index.js'))
-app.use('/gchat', require('./routes/gchat.js'))
-app.use('/users', require('./routes/user.js'))
-app.use('/stores', require('./routes/store.js'))
-app.use('/products', require('./routes/product.js'))
+app.use("/", require("./routes/auth.js"))
+app.use("/", require("./routes/index.js"))
+app.use("/admin", require("./routes/admin.js"))
+app.use("/gchat", require("./routes/gchat.js"))
+app.use("/users", require("./routes/user.js"))
+app.use("/stores", require("./routes/store.js"))
+app.use("/products", require("./routes/product.js"))
 
-//test delete
-app.get('/test', (req, res) => {
-    res.render('test.ejs', { session: req.session })
-})
 
 //Setup REST API routes
-app.use('/api/v1/products', require('./routes/api/product.js'))
+app.use("/api/v1/products", require("./routes/api/product.js"))
+app.use("/api/v1/stores", require("./routes/api/store.js"))
+app.use("/api/v1/users", require("./routes/api/user.js"))
+
+//test delete
+app.get("/test", (req, res) => {
+    res.render("test.ejs", { session: req.session })
+})
+//test delete
 
 //Setup our gchat server
-const gchat = new (require('./gchat_server.js'))(server)
+const gchat = new (require("./gchat_server.js"))(server)
 gchat.startListening()
 
 //Start express server

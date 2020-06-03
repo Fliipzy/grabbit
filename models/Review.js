@@ -1,9 +1,9 @@
-const { Model } = require('objection')
+const { Model } = require("objection")
 
 class Review extends Model {
 
     static get tableName() {
-        return 'review'
+        return "review"
     }
     
     static get relationMappings() {

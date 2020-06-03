@@ -1,22 +1,24 @@
-const router = require('express').Router()
-const Store = require('../../models/Store.js')
+const router = require("express").Router()
+const Store = require("../../models/Store.js")
 
 //Get all products from specific store
-router.get('/:sid', async (req, res) => {
+router.get("/:sid", async (req, res) => {
 
     //Retrieve the sid
     let {sid} = req.params
 
     //Query all products for store with given sid
-    let products = await Store.relatedQuery('products').for(sid)
+    let products = await Store.relatedQuery("products").for(sid)
 
     //Check if product array has any elements
     if (products.length > 0) {
+        
         //Set status code to 200
         res.status(200)
     }
     else {
-       //Set status code to 404 (Not Found)
+
+        //Set status code to 404 (Not Found)
         res.status(404)
     }
 

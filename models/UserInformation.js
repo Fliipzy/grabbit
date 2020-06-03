@@ -1,4 +1,4 @@
-const { Model } = require('objection')
+const { Model } = require("objection")
 
 class UserInformation extends Model {
 
@@ -8,7 +8,7 @@ class UserInformation extends Model {
     
     static get relationMappings() {
 
-        const User = require('./User.js')
+        const User = require("./User.js")
 
         return {
             //The user this information belongs to
@@ -16,8 +16,8 @@ class UserInformation extends Model {
                 relation: Model.HasOneRelation,
                 modelClass: User,
                 join: {
-                    from: 'user_information.id',
-                    to: 'user.id'
+                    from: "user_information.id",
+                    to: "user.id"
                 }
             }
         }

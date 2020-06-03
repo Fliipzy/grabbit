@@ -1,4 +1,4 @@
-const escape = require('escape-html')
+const escape = require("escape-html")
 
 class GchatServer {
 
@@ -27,7 +27,7 @@ class GchatServer {
 
             socket.on("message", (data) => {
                 
-                //Escape data.text here so users can't change html
+                //Escape data.text here so users cant change html
                 data.text = escape(data.text)
 
                 //Emit that message data to all clients/sockets

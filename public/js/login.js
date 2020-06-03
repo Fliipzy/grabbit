@@ -1,18 +1,18 @@
 //Checks if url has a hash appended then displays message accordingly
-let hash = window.location.hash.replace('#', '');
-let element = document.getElementById('status-container')
+let hash = window.location.hash.replace("#", "");
+let element = document.getElementById("status-container")
 
 if (hash) {
     let status = { alertType: undefined, text: undefined }
     let foundStatus = true
     switch (hash) {
-        case 'failed':
-            status.alertType = 'danger'
+        case "failed":
+            status.alertType = "danger"
             status.text = `Incorrect username or password`
             break
 
-        case 'signup-success':
-            status.alertType = 'success'
+        case "signup-success":
+            status.alertType = "success"
             status.text = `Welcome to Grabbit, please log in!`
             break
 

@@ -1,10 +1,13 @@
 <%- include('partials/header.ejs', {
-    title: 'Grabbit - Forgot password',
+    title: 'Grabbit - GChat',
     styles: [
         'https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css',
-        'css/style.css'
+        '/css/style.css'
     ]
 }) %>
+
+<!--Make space between nav and content-->
+<div id="nav-margin-bottom-div"></div>
 
 <!--Hidden input with username-->
 <input hidden type="text" id="username-input" value="<%- session.user.username %>">

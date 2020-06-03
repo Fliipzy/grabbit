@@ -1,10 +1,13 @@
-<%- include('../partials/header.ejs', {
-        title: 'Grabbit - Sign up',
+<%- include("../partials/header.ejs", {
+        title: "Grabbit - Sign up",
         styles: [
-            'https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css',
-            'css/style.css'
+            "https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css",
+            "/css/style.css"
         ]
 }) %>
+
+<!--Make space between nav and content-->
+<div id="nav-margin-bottom-div"></div>
 
     <div class="container">
 
@@ -52,7 +55,7 @@
                 <div class="form-group">
                     <label for="email">Email</label>
                     <input class="form-control" type="email" name="email" required>
-                    <small class="form-text text-muted">We'll never share your email with anyone else.</small>
+                    <small class="form-text text-muted">We"ll never share your email with anyone else.</small>
                 </div>
         
                 <button class="btn btn-outline-light" type="submit">Sign up</button>
@@ -70,11 +73,11 @@
 
     </div>
     
-<%- include('../partials/footer.ejs', {
+<%- include("../partials/footer.ejs", {
     scripts : [
-        'https://code.jquery.com/jquery-3.5.1.js',
-        'https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js',
-        'https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js',
-        'js/signup.js'
+        "https://code.jquery.com/jquery-3.5.1.js",
+        "https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js",
+        "https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js",
+        "js/signup.js"
     ]
 }) %>

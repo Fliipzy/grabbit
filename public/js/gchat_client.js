@@ -1,5 +1,4 @@
 
-
 //Color palette for chat names
 let colors = [
     "#660099",
@@ -65,12 +64,12 @@ $(document).ready(() => {
 
     //Listen for user_join emit event
     socket.on("user_join", (data) => {
-        $("#chat-messages").append(`<p>${data.user} has joined the chat</p>`)
+        $("#chat-messages").append(`<p style="color: #a8a8a8;">${data.user} has joined the chat</p>`)
     })
     
     //Listen for user_disconnect event
     socket.on("user_disconnect", (data) => {
-        $("#chat-messages").append(`<p>${data.user} has left the chat</p>`)
+        $("#chat-messages").append(`<p style="color: #a8a8a8;">${data.user} has left the chat</p>`)
     })
 
     //Listen for update emit event
