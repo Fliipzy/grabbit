@@ -1,10 +1,10 @@
 CREATE DATABASE  IF NOT EXISTS `grabbit` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
 USE `grabbit`;
--- MySQL dump 10.13  Distrib 8.0.20, for Win64 (x86_64)
+-- MySQL dump 10.13  Distrib 8.0.19, for Win64 (x86_64)
 --
 -- Host: localhost    Database: grabbit
 -- ------------------------------------------------------
--- Server version	8.0.20
+-- Server version	8.0.19
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -147,13 +147,16 @@ CREATE TABLE `store_admin` (
   `id` int unsigned NOT NULL AUTO_INCREMENT,
   `store_id` int unsigned NOT NULL,
   `admin_id` int unsigned NOT NULL,
+  `admin_type` int unsigned NOT NULL,
   `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
   KEY `store_admin__store_id_fk_idx` (`store_id`),
   KEY `store_admin__admin_id_fk_idx` (`admin_id`),
+  KEY `store_admin__admin_type_fk_idx` (`admin_type`),
   CONSTRAINT `store_admin__admin_id_fk` FOREIGN KEY (`admin_id`) REFERENCES `user` (`id`),
+  CONSTRAINT `store_admin__admin_type_fk` FOREIGN KEY (`admin_type`) REFERENCES `store_admin_type` (`id`),
   CONSTRAINT `store_admin__store_id_fk` FOREIGN KEY (`store_id`) REFERENCES `store` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -162,7 +165,32 @@ CREATE TABLE `store_admin` (
 
 LOCK TABLES `store_admin` WRITE;
 /*!40000 ALTER TABLE `store_admin` DISABLE KEYS */;
+INSERT INTO `store_admin` VALUES (1,1,1,1,'2020-06-03 22:07:21'),(2,2,1,1,'2020-06-03 22:07:21'),(5,1,8,2,'2020-06-03 22:56:41'),(6,2,10,2,'2020-06-03 22:57:10');
 /*!40000 ALTER TABLE `store_admin` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `store_admin_type`
+--
+
+DROP TABLE IF EXISTS `store_admin_type`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `store_admin_type` (
+  `id` int unsigned NOT NULL AUTO_INCREMENT,
+  `type` varchar(45) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `store_admin_type`
+--
+
+LOCK TABLES `store_admin_type` WRITE;
+/*!40000 ALTER TABLE `store_admin_type` DISABLE KEYS */;
+INSERT INTO `store_admin_type` VALUES (1,'owner'),(2,'full_access'),(3,'read_only_access');
+/*!40000 ALTER TABLE `store_admin_type` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -215,7 +243,7 @@ CREATE TABLE `user` (
   KEY `user_role_fk_idx` (`role_id`),
   CONSTRAINT `user_information_fk` FOREIGN KEY (`user_information_id`) REFERENCES `user_information` (`id`),
   CONSTRAINT `user_role_fk` FOREIGN KEY (`role_id`) REFERENCES `user_role` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -224,7 +252,7 @@ CREATE TABLE `user` (
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` VALUES (1,'fliipzy','$2b$12$QW2lIdmxVMsmZoFY1EOA7uP1eV/PIwRcgKFpBMdBHwJ35gPvCzI6O',1,1,1,'2020-05-20 10:28:35','2020-06-01 12:06:48'),(8,'mario','$2b$12$A24hoihKQFSHlxlExNvZbeQqIEEmtL7d4g318SsGbcna2wt3/HeP6',2,2,1,'2020-05-20 15:36:22','2020-05-21 14:28:07'),(9,'bobby','$2b$12$CFu5TuSWL8o02WafYnp2LOQVpQ4OqnP5ywNr.OyS9UPGFEYctwj9m',2,4,1,'2020-05-21 14:27:25',NULL);
+INSERT INTO `user` VALUES (1,'Fliipzy','$2b$12$QW2lIdmxVMsmZoFY1EOA7uP1eV/PIwRcgKFpBMdBHwJ35gPvCzI6O',1,1,1,'2020-05-20 10:28:35','2020-06-02 12:55:31'),(8,'1337H4cK3r','$2b$12$A24hoihKQFSHlxlExNvZbeQqIEEmtL7d4g318SsGbcna2wt3/HeP6',2,2,1,'2020-05-20 15:36:22','2020-06-02 12:55:31'),(9,'bob92','$2b$12$CFu5TuSWL8o02WafYnp2LOQVpQ4OqnP5ywNr.OyS9UPGFEYctwj9m',2,4,1,'2020-05-21 14:27:25','2020-06-02 12:55:31'),(10,'test','$2b$12$cKbyjS5rseVg9rYqvIDQXOl5z72EGWgRS.OvvAdQ0unwUV7S4bnNG',1,4,1,'2020-06-02 21:00:57','2020-06-02 21:08:55'),(11,'admin','$2b$12$il10bGvcFonKqh/gP4quceKuV63R61MYt.dFLNb6pWyTTX.tNC3Ki',1,5,1,'2020-06-04 07:36:35','2020-06-04 07:37:14'),(12,'user','$2b$12$il10bGvcFonKqh/gP4quceKuV63R61MYt.dFLNb6pWyTTX.tNC3Ki',2,6,1,'2020-06-04 07:39:08','2020-06-04 07:39:30');
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -243,7 +271,7 @@ CREATE TABLE `user_information` (
   `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -252,7 +280,7 @@ CREATE TABLE `user_information` (
 
 LOCK TABLES `user_information` WRITE;
 /*!40000 ALTER TABLE `user_information` DISABLE KEYS */;
-INSERT INTO `user_information` VALUES (1,'Frederik','Lundbeck Jørgensen','Frederiklundbeck@live.dk','2020-05-20 10:28:26',NULL),(2,'Mario','Pescé','Mario@nintendo.com','2020-05-20 15:36:16',NULL),(4,'bobby','fischer','bobfischer@gmail.com','2020-05-21 14:27:25',NULL);
+INSERT INTO `user_information` VALUES (1,'Frederik','Lundbeck Jørgensen','Frederiklundbeck@live.dk','2020-05-20 10:28:26',NULL),(2,'Mario','Pescé','Mario@nintendo.com','2020-05-20 15:36:16',NULL),(4,'bobby','fischer','bobfischer@gmail.com','2020-05-21 14:27:25',NULL),(5,'admin','admin','admin@grabbit.com','2020-06-04 07:37:03',NULL),(6,'user','user','user@grabbit.com','2020-06-04 07:39:24',NULL);
 /*!40000 ALTER TABLE `user_information` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -272,7 +300,7 @@ CREATE TABLE `user_reset` (
   PRIMARY KEY (`id`),
   KEY `user_reset__user_id_fk_idx` (`user_id`),
   CONSTRAINT `user_reset__user_id_fk` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=57 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=63 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -281,6 +309,7 @@ CREATE TABLE `user_reset` (
 
 LOCK TABLES `user_reset` WRITE;
 /*!40000 ALTER TABLE `user_reset` DISABLE KEYS */;
+INSERT INTO `user_reset` VALUES (57,1,'718b0152-6fec-46f6-9611-936bf6f69489',0,'2020-06-02 15:11:45'),(58,1,'db74bee4-dcc6-4c0a-8f07-afbe8fdd803e',0,'2020-06-02 15:12:28'),(59,1,'755a552c-4282-4f9d-9436-2761ba40b7ee',0,'2020-06-02 15:12:29'),(60,1,'62530bcd-816a-4507-b4b0-42b4ba80d914',0,'2020-06-02 15:12:30'),(61,1,'c60554bf-99f6-41c2-8c65-8ec85cd0d7cc',0,'2020-06-02 15:12:31'),(62,1,'49c9f966-d700-4144-b202-0d710400dcb0',0,'2020-06-02 15:12:32');
 /*!40000 ALTER TABLE `user_reset` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -307,10 +336,6 @@ LOCK TABLES `user_role` WRITE;
 INSERT INTO `user_role` VALUES (1,'admin'),(2,'user');
 /*!40000 ALTER TABLE `user_role` ENABLE KEYS */;
 UNLOCK TABLES;
-
---
--- Dumping events for database 'grabbit'
---
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -321,4 +346,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-06-01 18:50:41
+-- Dump completed on 2020-06-04  9:42:52

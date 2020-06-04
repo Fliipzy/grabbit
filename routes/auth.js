@@ -24,7 +24,6 @@ const bcrypt = require("bcrypt")
 const rounds = 12
 
 router.get("/login", (req, res) => {
-
     res.render("auth/login.ejs", { session: req.session })
 })
 

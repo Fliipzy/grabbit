@@ -14,19 +14,25 @@ router.get("/*", (req, res, next) => {
     }
 })
 
-//Get specific store
-router.get("/:sid", async (req, res) => {
-
-    //Retrieve the sid
-    let {sid} = req.params
+//Get all stores
+router.get("/", async (req, res) => {
 
     //Try to query specific store
-    let store = await Store.query()
-        .withGraphFetched("location")
-        .findById(sid)
+    let stores = await Store.query()
+        .select("store.id", "store.name", "store.created_at", 
+                "location.city_name", "location.postal_code",
+                "location.street_name", "location.street_number",
+                "owner.username")
+                .joinRelated("location")
+                .innerJoin("store_admin as admins")
+                .innerJoin("user as owner")
+                    .where("owner.id", "admins.admin_id")
+                    
 
-    //Check if store is not undefined
-    if (store != undefined) {
+    console.log(stores)
+
+    //Check if array is not empty
+    if (stores.length > 0) {
 
         //Set response status to OK
         res.status(200)
@@ -36,8 +42,8 @@ router.get("/:sid", async (req, res) => {
         //Set response status to Not Found
         res.status(404)
     }
-    //Finally return either store json or empty json
-    res.json({store})
+    //Finally return either store array json or empty json
+    res.json({stores})
 })
 
 module.exports = router
