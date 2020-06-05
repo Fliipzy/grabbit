@@ -59,7 +59,7 @@ router.post("/login", ratelimits.login, async (req, res) => {
             } 
             else {
                 //Redirect the authenticated user to the index
-                res.status(200).redirect("/")
+                res.status(200).redirect("/stores")
             }
         }
     } 

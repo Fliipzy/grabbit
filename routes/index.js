@@ -4,11 +4,13 @@ router.get("/", (req, res) => {
 
     //Check if session is authenticated
     if (req.session.authenticated == true) {
-        //Render the authenticated index
-        res.render("index_a.ejs", { session : req.session })
+
+        //Redirect to stores endpoint
+        res.redirect("/stores")
     }
     else {
-        //Render the unauthenticated index
+        
+        //Render the index view
         res.render("index.ejs", { session : req.session })
     }
 })

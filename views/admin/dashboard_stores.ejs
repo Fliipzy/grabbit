@@ -1,0 +1,60 @@
+<!--Include header and nav-->
+<%- include("./partials/header.ejs", {
+    title: "Grabbit - Login",
+    styles: [
+        "https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css",
+        "/css/style.css",
+        "https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css"
+    ]
+}) %>
+
+<!--Include admin dashboard start-->
+<%- include("./partials/admin/dashstart.ejs") %>
+
+<h2>Users</h2>
+<hr>
+
+<table id="storeTable" class="display">
+</table>
+
+<!--Include admin dashboard end-->
+<%- include("./partials/admin/dashend.ejs") %>
+
+
+<!--Include footer-->
+<%- include("./partials/footer.ejs", {
+    scripts : [
+        "https://code.jquery.com/jquery-3.5.1.js",
+        "https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js",
+        "https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js",
+        "https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+    ]
+}) %>
+
+<script>
+    $(document).ready(function () {
+
+        //jQuery ajax request
+        $.ajax({
+            url: "/api/v1/store",
+            method: "GET",
+            contentType: "application/json"
+        })
+        .done((data) => {
+
+            //Once the request has finished insert data into table
+            $('#storeTable').DataTable({
+                aaData: data,
+                columns: [
+                    { title: "Id", data: "id" },
+                    { title: "Name", data: "name" },
+                    { title: "City", data: "city" },
+                    { title: "Postal", data: "postal_code" },
+                    { title: "Address", data: "street_address"},
+                    { title: "Owner", data: "owner" },
+                    { title: "Created", data: "created_at" }
+                ],
+            })
+        })
+    })
+</script>

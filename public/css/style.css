@@ -388,3 +388,34 @@ div.form-signup div#logo {
     padding: 1em;
     background-color: rgb(232, 238, 238);
 }
+
+#stores-container {
+    font-family: 'Varela Round', sans-serif;
+    background-color: white;
+    min-height: 88.2vh;
+}
+
+#stores-container #header-section {
+    padding-top: 1em;
+    padding-left: 1em;
+}
+
+#stores-container #header-section h1 {
+    margin: 0px;
+}
+
+#stores-container #store-cards-container {
+
+}
+
+#stores-container div.store-card {
+    padding: 0.5em;
+    height: 200px;
+    margin-bottom: 25px;
+}
+
+#stores-container #search-menu {
+    background-color: forestgreen;
+    width: 100%;
+    height: 400px;
+}
