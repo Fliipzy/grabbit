@@ -4,6 +4,7 @@
     styles: [
         "https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css",
         "/css/style.css",
+        "/css/dashboard.css",
         "https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css"
     ]
 }) %>
@@ -11,8 +12,9 @@
 <!--Include admin dashboard start-->
 <%- include("../partials/admin/dashstart.ejs") %>
 
-<h2>Users</h2>
-<hr>
+<div id="table-header-row" class="row no-gutters">
+    <h1>Users</h1>
+</div>
 
 <table id="userTable" class="display">
 </table>

@@ -50,17 +50,16 @@ app.use("/users", require("./routes/user.js"))
 app.use("/stores", require("./routes/store.js"))
 app.use("/products", require("./routes/product.js"))
 
-
 //Setup REST API routes
 app.use("/api/v1/products", require("./routes/api/product.js"))
 app.use("/api/v1/stores", require("./routes/api/store.js"))
 app.use("/api/v1/users", require("./routes/api/user.js"))
 
-//test delete
-app.get("/test", (req, res) => {
+
+/* app.get("/test", (req, res) => {
     res.render("test.ejs", { session: req.session })
-})
-//test delete
+}) */
+
 
 //Setup our gchat server
 const gchat = new (require("./gchat_server.js"))(server)

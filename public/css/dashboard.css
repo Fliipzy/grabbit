@@ -1,0 +1,70 @@
+#dashboard-container {
+    height: 88.3vh;
+}
+
+#table-header-row {
+    padding-top: 10px;
+    height: 75px;
+}
+
+#main-row {
+    height: 100%;
+}
+
+#options-panel {
+    height: 100%;
+    background-color: rgb(103, 110, 129);
+    color: white;
+    padding: 1em;
+    
+}
+
+#options-panel hr {
+
+    border-right: 0px;
+    border-left: 0px;
+    border-top: 0px;
+    border-bottom: 1px rgb(177, 184, 206);
+    
+    border-bottom-style: solid;
+}
+
+#options-panel-header {
+    text-align: center;
+}
+
+#options-panel-header span {
+    font-size: x-large;
+    font-weight: bold;
+}
+
+#options-panel div.option-title {
+    margin-bottom: 9px;
+
+    font-size: 20px;
+    font-weight: bold;
+
+    color: rgb(155, 167, 194);
+}
+
+#options-panel nav a.nav-link {
+    
+    width: 100%;
+    height: 42px;
+
+    padding-top: 5px;
+    padding-bottom: 5px;
+
+    color: white;
+}
+
+#options-panel nav a.nav-link:hover {
+    background-color: rgb(118, 126, 148);
+}
+
+#dash-bottom-text {
+    position: absolute;
+    bottom: 0px;
+    left: 3px;
+    color: rgb(155, 167, 194);
+}

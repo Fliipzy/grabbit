@@ -1,0 +1,119 @@
+@import url('https://fonts.googleapis.com/css2?family=Varela+Round&display=swap');
+
+* {
+    font-family: 'Varela Round', sans-serif;
+}
+
+html, body {
+    background: whitesmoke;
+}
+
+.ellipsis {
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow-x: hidden;
+}
+
+/* General styling */
+
+.container {
+    height: 100vh;
+    background: white;
+}
+
+/* Left panels styling */
+
+#kitchen-type-label {
+    padding-right: 20px;
+}
+
+#left-options-col .card {
+    margin-bottom: 20px;
+}
+
+#left-options-col .card .card-header {
+    padding: 5px;
+    padding-left: 10px;
+    font-size: 18px;
+}
+
+#left-options-col .card .card-body {
+    padding-top: 5px;
+    padding-left: 10px;
+}
+
+#type-box-col {
+    padding-right: 0px;
+}
+
+#left-options-col .card .card-body .form-check {
+    margin-top: 7px;
+}
+
+#left-options-col .card-body hr {
+    margin-bottom: 5px;
+    margin-top: 5px;
+}
+
+#store-card-col {
+    padding-left: 10px;
+}
+
+/* Store card styling */
+
+.store-card {
+    width: 820px;
+    height: 145px;
+    margin-bottom: 20px;
+    padding: 7px;
+}
+
+.store-card-image {
+    float: left;
+    width: 128px;
+    height: 128px;
+    background-size: contain;
+    cursor: pointer;
+}
+
+.store-card-description {
+    position: absolute;
+    left: 148px;
+    width: 480px;
+}
+
+.store-card-order-container {
+    position: absolute;
+    left: calc(480px + 148px);
+    width: 183px;
+    height: 90%;
+}
+
+.store-card-title {
+    font-size: 23px;
+    line-height: 28px;
+    font-weight: bold;
+}
+
+.store-card-address {
+    color: rgb(153, 153, 153);
+    font-size: 14px;
+    line-height: 16px;
+}
+
+.store-status {
+    font-weight: 100;
+    font-size: 12px;
+}
+
+.store-card-rating {
+    position: absolute;
+    left: 148px;
+    bottom: 7px;
+}
+
+/* Star rating styling */
+
+.checked {
+    color: orange;
+}

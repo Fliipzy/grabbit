@@ -23,8 +23,14 @@ router.get("/dashboard", (req, res) => {
 
 router.get("/dashboard/users", (req, res) => {
 
-    //Render admin dashboard
+    //Render admin users dashboard
     res.status(200).render("admin/dashboard_users.ejs", { session: req.session })
+})
+
+router.get("/dashboard/stores", (req, res) => {
+
+    //Render admin stores dashboard
+    res.status(200).render("admin/dashboard_stores.ejs", { session: req.session })
 })
 
 module.exports = router

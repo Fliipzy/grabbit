@@ -1,0 +1,86 @@
+#main-container {
+    min-height: 88.2vh;
+    background: rgb(241, 241, 241);
+}
+
+#left-col {
+    padding-right: 10px;
+    
+}
+
+#right-col {
+    padding-left: 30px;
+}
+
+#search-panel {
+    height: 450px;
+    width: 100%;
+    background-color: rgb(255, 255, 255);
+}
+
+#right-col {
+    height: 100%;
+}
+
+.store-card {
+    width: 412px;
+    height: 112px;
+    padding: 5px;
+    margin-bottom: 18px;
+}
+
+.store-card .main-row {
+    height: 100%;
+}
+
+.store-card .store-image-col {
+    height: 100%;
+}
+
+.store-card .store-description {
+    height: 100%;
+    padding-left: 8px;
+}
+
+.store-description .store-title {
+    font-size: 17px;
+    font-weight: bold;
+}
+
+.store-description .store-address {
+    font-size: 12px;
+    line-height: 13px;
+    color: rgb(158, 158, 158);
+}
+
+.store-description .store-type {
+    font-size: 12px;
+    color: rgb(158, 158, 158);
+}
+
+.description-upper-row {
+    height: 50%;
+}
+
+.description-rating {
+    margin-top: 25px;
+    height: 50%;
+}
+
+.description-rating .ratings {
+    font-size: 12px;
+}
+
+.filled-star {
+    color: rgb(255, 217, 0);
+}
+
+.store-order .order-button-row {
+    height: 100%;
+}
+
+.store-order .order-button-row .order-button {
+    padding: 2px;
+    height: 28px;
+    width: 100%;
+}

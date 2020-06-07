@@ -1,28 +1,30 @@
 <!--Include header and nav-->
-<%- include("./partials/header.ejs", {
+<%- include("../partials/header.ejs", {
     title: "Grabbit - Login",
     styles: [
         "https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css",
         "/css/style.css",
+        "/css/datatables.css",
+        "/css/dashboard.css",
         "https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css"
     ]
 }) %>
 
 <!--Include admin dashboard start-->
-<%- include("./partials/admin/dashstart.ejs") %>
+<%- include("../partials/admin/dashstart.ejs") %>
 
-<h2>Users</h2>
+<h2>Stores</h2>
 <hr>
 
 <table id="storeTable" class="display">
 </table>
 
 <!--Include admin dashboard end-->
-<%- include("./partials/admin/dashend.ejs") %>
+<%- include("../partials/admin/dashend.ejs") %>
 
 
 <!--Include footer-->
-<%- include("./partials/footer.ejs", {
+<%- include("../partials/footer.ejs", {
     scripts : [
         "https://code.jquery.com/jquery-3.5.1.js",
         "https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js",
@@ -36,25 +38,27 @@
 
         //jQuery ajax request
         $.ajax({
-            url: "/api/v1/store",
+            url: "/api/v1/stores",
             method: "GET",
             contentType: "application/json"
         })
-        .done((data) => {
+            .done((data) => {
 
-            //Once the request has finished insert data into table
-            $('#storeTable').DataTable({
-                aaData: data,
-                columns: [
-                    { title: "Id", data: "id" },
-                    { title: "Name", data: "name" },
-                    { title: "City", data: "city" },
-                    { title: "Postal", data: "postal_code" },
-                    { title: "Address", data: "street_address"},
-                    { title: "Owner", data: "owner" },
-                    { title: "Created", data: "created_at" }
-                ],
+                //Once the request has finished insert data into table
+                $('#storeTable').DataTable({
+                    aaData: data,
+                    columns: [
+                        { title: "Name", data: "name" },
+                        {
+                            title: "Address", data: "street_name",
+                            render: function (data, type, row) {
+                                return `${row.street_name} ${row.street_number}, ${row.postal_code} ${row.city_name}`
+                            }
+                        },
+                        { title: "Owner", data: "owner" },
+                        { title: "Created", data: "created_at" }
+                    ],
+                })
             })
-        })
     })
 </script>

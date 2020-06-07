@@ -2,65 +2,63 @@
     title: 'Grabbit - Stores',
     styles: [
         'https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css',
-        '/css/style.css'
+        '/css/style.css',
+        '/css/stores.css'
     ]
 }) %>
+<!--Octicons for star rating icons-->
+<script src="https://code.iconify.design/1/1.0.6/iconify.min.js"></script>
 
-<!--Main container-->
-<div id="stores-container" class="container">
+<div id="main-container" class="container">
 
-    <section id="header-section">
-        <h1>Stores</h1>
-        <hr>
-    </section>
+    <h1>Stores</h1>
 
-    <!--Main row-->
-    <div class="row">
-
-        <!--Left column-->
-        <div class="col-3">
-
-            <div id="search-menu" class="rounded shadow">
+    <div id="main-row" class="row no-gutters">
+        <div id="left-col" class="col-4">
+            <!--Search panel-->
+            <div id="search-panel" class="card">
 
             </div>
-
         </div>
-
-        <!--Right column-->
-        <div class="col-9">
-
-            <div id="store-cards-container">
-
-                <!--store card-->
-                <div class="store-card card shadow">
-
-                    <div class="row no-gutters">
-
-                        <div class="col-2">
-                            <img class="" src="https://cmrelations.dk/wp-content/uploads/2019/03/Oasen-Kebab-Pizzaria-logo.png">
-                        </div>
-
-                        <div class="col-10">
-                            <div class="card-body">
-                                <h5 class="card-title">Card title</h5>
-                                <p class="card-text">This is a wider card with supporting text below as a natural
-                                    lead-in to additional content. This content is a little bit longer.</p>
-                                <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-                            </div>
-                        </div>
-
+        <div id="right-col" class="col-8">
+            
+            <!--Store card-->
+            <div class="store-card card shadow-sm">
+                <div class="row no-gutters main-row">
+                    <div class="store-image-col col-3">
+                        <img class="rounded border" src="/images/stores/profile-images/kea16logo.jpg" width="100px" height="100px" alt="" srcset="">
                     </div>
-
+                    <div class="store-description col-7">
+                        <div class="description-upper-row">
+                            <div class="store-title ellipsis">KEA 37</div>
+                            <div class="store-address ellipsis">København, Lygten 37</div>
+                            <div class="store-type ellipsis">Cafeteria</div>
+                        </div>
+                        <div class="description-rating">
+                            <span class="iconify filled-star" data-icon="octicon:star" data-inline="false"></span>
+                            <span class="iconify filled-star" data-icon="octicon:star" data-inline="false"></span>
+                            <span class="iconify filled-star" data-icon="octicon:star" data-inline="false"></span>
+                            <span class="iconify filled-star" data-icon="octicon:star" data-inline="false"></span>
+                            <span class="iconify" data-icon="octicon:star" data-inline="false"></span>
+                            <span class="iconify" data-icon="octicon:star" data-inline="false"></span>
+                            <span id="ratings" class="ratings ellipsis">(134)</span>
+                        </div>
+                    </div>
+                    <div class="store-order col-2">
+                        <div class="row order-button-row no-gutters align-items-end">
+                            <button class="order-button btn btn-warning">Order</button>
+                        </div>
+                    </div>
                 </div>
-
             </div>
 
         </div>
-
     </div>
 
 
 </div>
+
+
 
 <%- include('./partials/footer.ejs', {
     scripts : [

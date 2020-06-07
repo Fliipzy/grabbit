@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard</title>
+
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+    integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+  <link rel="stylesheet" href="stores.css">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<body>
+
+  <!--Navbar-->
+  <nav class="navbar navbar-expand-lg navbar-light bg-light shadow-sm">
+    <a class="navbar-brand" href="#">Navbar</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Link</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">
+            Dropdown
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="#">Action</a>
+            <a class="dropdown-item" href="#">Another action</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="#">Something else here</a>
+          </div>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link disabled" href="#">Disabled</a>
+        </li>
+      </ul>
+      <form class="form-inline my-2 my-lg-0">
+        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+      </form>
+    </div>
+  </nav>
+
+
+  <div class="container" style="padding-top: 15px">
+
+    <!--Main row-->
+    <div class="row">
+
+      <!--Left column-->
+      <div id="left-options-col" class="col-3">
+
+        <!--Food type box-->
+        <div id="type-box" class="card shadow">
+
+          <!--Card header-->
+          <div class="card-header">
+            <img src="burger.svg" width="25px" height="100%">
+            Food type
+          </div>
+
+          <!--Card body-->
+          <div class="card-body">
+            <form id="kitchen-type-form" method="get">
+
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" checked="true" id="typeAll">
+                <label class="form-check-label" for="typeAll">
+                  All
+                </label>
+              </div>
+
+              <hr>
+
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="" id="typeBurger">
+                <label class="form-check-label" for="typeBurger">
+                  Burger
+                </label>
+              </div>
+
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="" id="typeDessert">
+                <label class="form-check-label" for="typeDessert">
+                  Dessert
+                </label>
+              </div>
+
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="" id="typeGrill">
+                <label class="form-check-label" for="typeGrill">
+                  Grill
+                </label>
+              </div>
+
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="" id="typeIndian">
+                <label class="form-check-label" for="typeIndian">
+                  Indian
+                </label>
+              </div>
+
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="" id="typeMexican">
+                <label class="form-check-label" for="typeMexican">
+                  Mexican
+                </label>
+              </div>
+
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="" id="typePizza">
+                <label class="form-check-label" for="typePizza">
+                  Pizza
+                </label>
+              </div>
+
+              <!--Checkboxes-->
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="" id="typeSandwich">
+                <label class="form-check-label" for="typeSandwich">
+                  Sandwich & Bagel
+                </label>
+              </div>
+
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="" id="typeSushi">
+                <label class="form-check-label" for="typeSushi">
+                  Sushi
+                </label>
+              </div>
+
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="" id="typeMexican">
+                <label class="form-check-label" for="typeMexican">
+                  Turkish
+                </label>
+              </div>
+
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="" id="typeVegan">
+                <label class="form-check-label" for="typeVegan">
+                  Vegan
+                </label>
+              </div>
+
+            </form>
+          </div>
+
+        </div>
+
+        <!--Options box-->
+        <div id="options-box" class="card shadow">
+
+          <!--Card header-->
+          <div class="card-header">
+            <img src="equalizer.svg" width="25px" height="100%">
+            Options
+          </div>
+
+          <!--Card body-->
+          <div class="card-body">
+
+            <!--Options form-->
+            <form id="options-form" method="get">
+
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="" id="typeAll">
+                <label class="form-check-label" for="typeAll">
+                  Is open
+                </label>
+              </div>
+
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="" id="typeAll">
+                <label class="form-check-label" for="typeAll">
+                  5+ stars
+                </label>
+              </div>
+
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="" id="typeAll">
+                <label class="form-check-label" for="typeAll">
+                  New
+                </label>
+              </div>
+
+            </form>
+
+          </div>
+
+        </div>
+
+      </div>
+
+      <!--Store cards col-->
+      <div id="store-card-col" class="col-9">
+
+        <!--Store card-->
+        <div class="store-card card shadow-sm">
+
+          <section>
+
+            <!--Store card image-->
+            <div class="store-card-image rounded border" style="background-image: url(laluna.jpg);">
+
+            </div>
+
+            <!--Store card description-->
+            <div class="store-card-description">
+
+              <!--title-->
+              <div id="storeName" class="store-card-title ellipsis">La Luna Pizzaria</div>
+
+              <!--address-->
+              <div id="storeAddress" class="store-card-address ellipsis">Haraldsgade 54, 2400 København NV</div>
+              
+              <!--Food types-->
+              <div id="storeFoodTypes" class="store-card-foodtypes ellipsis">Pizza, Grill</div>
+
+              <!--open status-->
+              <span id="storeStatus" class="store-status badge badge-success">Open</span>
+
+            </div>
+
+            <!--rating-->
+            <div class="store-card-rating">
+              <span class="fa fa-star checked"></span>
+              <span class="fa fa-star checked"></span>
+              <span class="fa fa-star checked"></span>
+              <span class="fa fa-star checked"></span>
+              <span class="fa fa-star checked"></span>
+              <span class="fa fa-star"></span>
+              (4092)
+            </div>
+
+            <div class="store-card-order-container">
+              hello
+            </div>
+
+          </section>
+
+        </div>
+        
+        <!--Store card-->
+        <div class="store-card card shadow-sm">
+
+          <section>
+
+            <!--Store card image-->
+            <div class="store-card-image rounded border" style="background-image: url(alanya.jpg);">
+
+            </div>
+
+            <!--Store card description-->
+            <div class="store-card-description">
+
+              <!--title-->
+              <div class="store-card-title ellipsis">Alanya Pizza & Kebab</div>
+
+              <!--address-->
+              <div class="store-card-address ellipsis">Frederikssundsvej 40, 2400 København NV</div>
+
+              <!--Food types-->
+              <div id="storeFoodTypes" class="store-card-foodtypes ellipsis">Pizza, Grill, Turkish</div>
+
+              <!--open status-->
+              <span class="store-status badge badge-success">Open</span>
+
+            </div>
+
+            <!--rating-->
+            <div class="store-card-rating">
+              <span class="fa fa-star checked"></span>
+              <span class="fa fa-star checked"></span>
+              <span class="fa fa-star checked"></span>
+              <span class="fa fa-star checked"></span>
+              <span class="fa fa-star checked"></span>
+              <span class="fa fa-star"></span>
+              (2481)
+            </div>
+          </section>
+
+        </div>
+        
+        <!--Store card-->
+        <div class="store-card card shadow-sm">
+
+          <section>
+
+            <!--Store card image-->
+            <div class="store-card-image rounded border" style="background-image: url(kea37logo.jpg);">
+
+            </div>
+
+            <!--Store card description-->
+            <div class="store-card-description">
+
+              <!--title-->
+              <div class="store-card-title ellipsis">KEA 37</div>
+
+              <!--address-->
+              <div class="store-card-address ellipsis">Lygten 37, 2400 København NV</div>
+
+              <!--Food types-->
+              <div id="storeFoodTypes" class="store-card-foodtypes ellipsis">Cafeteria</div>
+
+              <!--open status-->
+              <span class="store-status badge badge-success">Open</span>
+
+            </div>
+
+            <!--rating-->
+            <div class="store-card-rating">
+              <span class="fa fa-star checked"></span>
+              <span class="fa fa-star checked"></span>
+              <span class="fa fa-star checked"></span>
+              <span class="fa fa-star checked"></span>
+              <span class="fa fa-star"></span>
+              <span class="fa fa-star"></span>
+              (302)
+            </div>
+          </section>
+
+        </div>
+
+        <!--Store card-->
+        <div class="store-card card shadow-sm">
+
+          <section>
+
+            <!--Store card image-->
+            <div class="store-card-image rounded border" style="background-image: url(kea16logo.jpg);">
+
+            </div>
+
+            <!--Store card description-->
+            <div class="store-card-description">
+
+              <!--title-->
+              <div class="store-card-title ellipsis">KEA 16</div>
+
+              <!--address-->
+              <div class="store-card-address ellipsis">Lygten 16, 2400 København NV</div>
+
+              <!--Food types-->
+              <div id="storeFoodTypes" class="store-card-foodtypes ellipsis">Cafeteria</div>
+
+              <!--open status-->
+              <span class="store-status badge badge-danger">Closed</span>
+
+            </div>
+
+            <!--rating-->
+            <div class="store-card-rating">
+              <span class="fa fa-star checked"></span>
+              <span class="fa fa-star checked"></span>
+              <span class="fa fa-star checked"></span>
+              <span class="fa fa-star"></span>
+              <span class="fa fa-star"></span>
+              <span class="fa fa-star"></span>
+              (135)
+            </div>
+          </section>
+
+        </div>
+
+
+
+        <div class="store-card card shadow-sm">
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+    integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+    integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+    integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+    crossorigin="anonymous"></script>
+</body>
+
+</html>
