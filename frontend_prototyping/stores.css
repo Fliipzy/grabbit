@@ -112,6 +112,15 @@ html, body {
     bottom: 7px;
 }
 
+#order-button {
+    position: absolute;
+    right: 8px;
+    bottom: 8px;
+
+    font-size: 19px;
+    height: 40px;
+}
+
 /* Star rating styling */
 
 .checked {
