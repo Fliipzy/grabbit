@@ -37,16 +37,16 @@ $(document).ready(() => {
     })
 
     //Add checkbox events to every checkbox
-    addCheckboxEventFunction("#typeBurger")
-    addCheckboxEventFunction("#typeDessert")
-    addCheckboxEventFunction("#typeGrill")
-    addCheckboxEventFunction("#typeIndian")
-    addCheckboxEventFunction("#typeMexican")
-    addCheckboxEventFunction("#typePizza")
-    addCheckboxEventFunction("#typeSandwich")
-    addCheckboxEventFunction("#typeSushi")
-    addCheckboxEventFunction("#typeTurkish")
-    addCheckboxEventFunction("#typeVegan")
+    addCheckBoxEvent("#typeBurger")
+    addCheckBoxEvent("#typeDessert")
+    addCheckBoxEvent("#typeGrill")
+    addCheckBoxEvent("#typeIndian")
+    addCheckBoxEvent("#typeMexican")
+    addCheckBoxEvent("#typePizza")
+    addCheckBoxEvent("#typeSandwich")
+    addCheckBoxEvent("#typeSushi")
+    addCheckBoxEvent("#typeTurkish")
+    addCheckBoxEvent("#typeVegan")
 
     //Get all stores data with ajax
     $.ajax({
@@ -55,16 +55,63 @@ $(document).ready(() => {
         contentType: "application/json"
     })
     .done((stores) => {
-        console.log("ajax call done!")
+        //Foreach store in stores array
+        stores.forEach(store => {
+            addStoreCard(store)
+        });
     })
 
     //Appends new store card html to cards container
-    function addStoreCard(storeData) {
-        cardContainer.append("<p>Hello world!</p>")
+    function addStoreCard(store) {
+        cardContainer.append(`
+        <div class="store-card card shadow-sm">
+
+          <section>
+
+            <!--Store card image-->
+            <div class="store-card-image rounded border" style="background-image: url(laluna.jpg);">
+
+            </div>
+
+            <!--Store card description-->
+            <div class="store-card-description">
+
+              <!--title-->
+              <div id="storeName" class="store-card-title ellipsis">${store.name}</div>
+
+              <!--address-->
+              <div id="storeAddress" class="store-card-address ellipsis">${store.street_name} ${store.street_number}, 
+                ${store.postal_code} ${store.city_name}</div>
+              
+              <!--Food types-->
+              <div id="storeFoodTypes" class="store-card-foodtypes ellipsis">Pizza, Grill</div>
+
+              <!--open status-->
+              <span id="storeStatus" class="store-status badge badge-success">Open</span>
+
+            </div>
+
+            <!--rating-->
+            <div id="rating-container" class="store-card-rating">
+              <span class="fa fa-star checked"></span>
+              <span class="fa fa-star checked"></span>
+              <span class="fa fa-star checked"></span>
+              <span class="fa fa-star checked"></span>
+              <span class="fa fa-star checked"></span>
+              <span class="fa fa-star"></span>
+              (4092)
+            </div>
+
+            <button id="order-button" class="btn btn-warning">Order</button>
+
+          </section>
+
+        </div>
+        `)
     }
 })
 
-function addCheckboxEventFunction(checkboxId) {
+function addCheckBoxEvent(checkboxId) {
     $(checkboxId).change(() => {
         if ($(checkboxId).is(":checked")) {
             $("#typeAll").prop("checked", false)
