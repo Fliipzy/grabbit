@@ -55,12 +55,6 @@ app.use("/api/v1/products", require("./routes/api/product.js"))
 app.use("/api/v1/stores", require("./routes/api/store.js"))
 app.use("/api/v1/users", require("./routes/api/user.js"))
 
-
-/* app.get("/test", (req, res) => {
-    res.render("test.ejs", { session: req.session })
-}) */
-
-
 //Setup our gchat server
 const gchat = new (require("./gchat_server.js"))(server)
 gchat.startListening()

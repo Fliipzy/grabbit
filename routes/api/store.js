@@ -17,16 +17,29 @@ router.get("/*", (req, res, next) => {
 //Get all stores
 router.get("/", async (req, res) => {
 
-    //Select stores and innerjoin other tables for extra data
+    //Query all stores and their location information
     let stores = await Store.query()
-    .select("store.name", "store.created_at", 
-            "user.username AS owner", "location.city_name",
-            "location.street_name", "location.street_number",
-            "location.postal_code")
-    .innerJoin("store_address AS location", {"location.store_id": "store.id"})
-    .innerJoin("store_admin", {"store_admin.store_id": "store.id"})
-    .innerJoin("user", {"user.id": "store_admin.admin_id"})
-        .where("store_admin.admin_id", 1)
+        .select("store.*", "u.username AS owner", "l.city_name",
+                "l.street_name", "l.street_number", "l.postal_code")
+        .innerJoin("store_address AS l", { "l.store_id": "store.id" })
+        .innerJoin("store_admin", { "store_admin.store_id": "store.id"})
+        .innerJoin("user AS u", { "u.id": "store_admin.admin_id"})
+            .where("store_admin.admin_id", 1)
+
+    
+    //Foreach store in stores
+    for (let index = 0; index < stores.length; index++) {
+
+        //Query opening hours data for corresponding store
+        let openHours = await Store.relatedQuery("openingHours")
+            .select("store_opening_hours.day",
+                    "store_opening_hours.opens_at",
+                    "store_opening_hours.closes_at")
+            .for(stores[index].id)
+
+        //Concat openHours array to corresponding stores objects
+        stores[index].opening_hours = openHours
+    }
 
     //Check if array is not empty
     if (stores.length > 0) {
