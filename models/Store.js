@@ -13,6 +13,7 @@ class Store extends Model {
         const StoreAddress = require("./StoreAddress.js")
         const OpeningHours = require("./OpeningHours.js")
         const StoreFoodType = require("./StoreFoodType.js")
+        const StoreRating = require("./StoreRating.js")
 
         return {
 
@@ -61,6 +62,14 @@ class Store extends Model {
                 join: {
                     from: "store.id",
                     to: "store_food_type.store_id"
+                }
+            },
+            rating: {
+                relation: Model.HasOneRelation,
+                modelClass: StoreRating,
+                join: {
+                    from: "store.id",
+                    to: "store_rating.store_id"
                 }
             }
         }

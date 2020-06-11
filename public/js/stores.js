@@ -61,15 +61,35 @@ $(document).ready(() => {
         });
     })
 
+    let today = new Date()
+    let day = today.getDay() - 1
+    let timeNowArray = `${today.getHours().toString()}:${today.getMinutes.toString()}`
+
     //Appends new store card html to cards container
     function addStoreCard(store) {
+
+        let isOpen = false
+
+        let openingTime = store.opening_hours[day].opens_at
+        let closingTime = store.opening_hours[day].closes_at
+        let yesterdayClosingTime = store.opening_hours[day - 1].closes_at
+
+        //Check if time now is more than opening time and less than closing 
+        //time or if time is less than yesterdays closing time
+        if ((openingTime != null || closingTime != null) && 
+            (timeNowArray >= openingTime && timeNowArray <= closingTime) || timeNowArray < yesterdayClosingTime) {
+          isOpen = true
+        }
+
+
         cardContainer.append(`
         <div class="store-card card shadow-sm">
 
           <section>
 
             <!--Store card image-->
-            <div class="store-card-image rounded border" style="background-image: url(laluna.jpg);">
+            <div class="store-card-image rounded border" style="background-image: 
+            url('/images/stores/profile-images/${store.image_name}');">
 
             </div>
 
@@ -84,15 +104,16 @@ $(document).ready(() => {
                 ${store.postal_code} ${store.city_name}</div>
               
               <!--Food types-->
-              <div id="storeFoodTypes" class="store-card-foodtypes ellipsis">Pizza, Grill</div>
+              <div id="storeFoodTypes" class="store-card-foodtypes ellipsis">${store.food_types.join(", ")}</div>
 
               <!--open status-->
-              <span id="storeStatus" class="store-status badge badge-success">Open</span>
+              <span id="storeStatus" class="store-status badge badge-${isOpen ? "success" : "danger"}">${isOpen ? "Open" : "Closed"}</span>
 
             </div>
 
             <!--rating-->
             <div id="rating-container" class="store-card-rating">
+              ${'<span class="fa fa-star checked"></span>\n'.repeat(store.rating)}
               <span class="fa fa-star checked"></span>
               <span class="fa fa-star checked"></span>
               <span class="fa fa-star checked"></span>

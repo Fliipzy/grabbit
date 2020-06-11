@@ -6,3 +6,5 @@ class StoreFoodType extends Model {
         return "store_food_type"
     }
 }
+
+module.exports = StoreFoodType

@@ -20,7 +20,9 @@ router.get("/", async (req, res) => {
     //Query all stores and their location information
     let stores = await Store.query()
         .select("store.*", "u.username AS owner", "l.city_name",
-                "l.street_name", "l.street_number", "l.postal_code")
+                "l.street_name", "l.street_number", "l.postal_code",
+                "p.image_name")
+        .innerJoin("store_profile_image AS p", { "p.store_id": "store.id" })
         .innerJoin("store_address AS l", { "l.store_id": "store.id" })
         .innerJoin("store_admin", { "store_admin.store_id": "store.id"})
         .innerJoin("user AS u", { "u.id": "store_admin.admin_id"})
@@ -37,8 +39,20 @@ router.get("/", async (req, res) => {
                     "store_opening_hours.closes_at")
             .for(stores[index].id)
 
-        //Concat openHours array to corresponding stores objects
+        //Concat openHours array to store object
         stores[index].opening_hours = openHours
+
+        //Query food type data for corresponding store
+        let foodTypes = await Store.relatedQuery("foodTypes")
+            .select("store_food_type.food_type")
+            .for(stores[index].id)
+        
+        //Concat food types array to store object
+        stores[index].food_types = []
+
+        foodTypes.forEach(foodType => {
+            stores[index].food_types.push(foodType.food_type)
+        });
     }
 
     //Check if array is not empty
