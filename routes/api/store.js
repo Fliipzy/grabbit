@@ -21,11 +21,12 @@ router.get("/", async (req, res) => {
     let stores = await Store.query()
         .select("store.*", "u.username AS owner", "l.city_name",
                 "l.street_name", "l.street_number", "l.postal_code",
-                "p.image_name")
-        .innerJoin("store_profile_image AS p", { "p.store_id": "store.id" })
-        .innerJoin("store_address AS l", { "l.store_id": "store.id" })
-        .innerJoin("store_admin", { "store_admin.store_id": "store.id"})
-        .innerJoin("user AS u", { "u.id": "store_admin.admin_id"})
+                "p.image_name", "r.rating")
+        .innerJoin("store_profile_image AS p",  { "p.store_id": "store.id" })
+        .innerJoin("store_address AS l",        { "l.store_id": "store.id" })
+        .innerJoin("store_rating AS r",         { "r.store_id": "store.id" })
+        .innerJoin("store_admin",               { "store_admin.store_id": "store.id"})
+        .innerJoin("user AS u",                 { "u.id": "store_admin.admin_id"})
             .where("store_admin.admin_id", 1)
 
     
