@@ -113,13 +113,10 @@ $(document).ready(() => {
 
             <!--rating-->
             <div id="rating-container" class="store-card-rating">
-              ${'<span class="fa fa-star checked"></span>\n'.repeat(store.rating)}
-              <span class="fa fa-star checked"></span>
-              <span class="fa fa-star checked"></span>
-              <span class="fa fa-star checked"></span>
-              <span class="fa fa-star checked"></span>
-              <span class="fa fa-star checked"></span>
-              <span class="fa fa-star"></span>
+              ${
+                '<span class="fa fa-star checked"></span>\n'.repeat(store.rating) +
+                '<span class="fa fa-star"></span>\n'.repeat(6 - store.rating)
+              }     
               (4092)
             </div>
 
