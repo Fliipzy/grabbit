@@ -62,7 +62,7 @@ $(document).ready(() => {
     })
 
     let today = new Date()
-    let day = today.getDay() - 1
+    let day = today.getDay()
     let timeNowArray = `${today.getHours().toString()}:${today.getMinutes.toString()}`
 
     //Appends new store card html to cards container
@@ -72,7 +72,7 @@ $(document).ready(() => {
 
         let openingTime = store.opening_hours[day].opens_at
         let closingTime = store.opening_hours[day].closes_at
-        let yesterdayClosingTime = store.opening_hours[day - 1].closes_at
+        let yesterdayClosingTime = store.opening_hours[day == 0 ? 6 : day - 1].closes_at
 
         //Check if time now is more than opening time and less than closing 
         //time or if time is less than yesterdays closing time
