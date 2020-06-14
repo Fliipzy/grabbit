@@ -10,20 +10,11 @@
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
 
-        <ul class="navbar-nav mr-auto">
+        <ul id="navbar-left-items" class="navbar-nav mr-auto">
             
             <li class="nav-item active">
                 <a class="nav-link" href="#">Order food</a>
             </li>
-
-            <!--If session is authenticated-->
-            <% if (session.authenticated == true) { %>
-
-            <li class="nav-item active">
-                <a class="nav-link" href="/gchat">G-Chat <span class="pill badge badge-success">Beta</span> </a>
-            </li>
-
-            <% } %>
 
         </ul>
 

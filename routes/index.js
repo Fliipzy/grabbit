@@ -6,12 +6,12 @@ router.get("/", (req, res) => {
     if (req.session.authenticated == true) {
 
         //Redirect to stores endpoint
-        res.redirect("/stores")
+        res.sendFile("public/html/stores.html", { root : "."})
     }
     else {
         
         //Render the index view
-        res.render("index.ejs", { session : req.session })
+        res.sendFile("public/html/index.html", { root : "."})
     }
 })
 

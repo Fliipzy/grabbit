@@ -52,6 +52,7 @@ app.use("/products", require("./routes/product.js"))
 
 //Setup REST API routes
 app.use("/api/v1/products", require("./routes/api/product.js"))
+app.use("/api/v1/session", require("./routes/api/session.js"))
 app.use("/api/v1/stores", require("./routes/api/store.js"))
 app.use("/api/v1/users", require("./routes/api/user.js"))
 
