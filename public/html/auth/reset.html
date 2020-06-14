@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Grabbit - Forgot password</title>
+
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+	<link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+	<!--Navbar fragment-->
+	<div id="navbar-fragment"></div>
+
+	<!--The container holding all the content-->
+	<div id="container">
+		<div id="main">
+			<!--Make space between nav and content-->
+			<div id="nav-margin-bottom-div"></div>
+
+			<div class="container">
+
+				<div class="form-default form-reset">
+
+					<form id="reset-form" action="/reset/<%= token.uuid %>" method="post">
+
+						<h3>Reset password</h3>
+
+						<div class="form-group">
+
+							<label for="password">New password</label>
+							<input class="form-control" type="password" name="password" id="password" required>
+
+						</div>
+
+						<div class="form-group">
+
+							<label for="repassword">Re-enter password</label>
+							<input class="form-control" type="password" name="repassword" id="repassword">
+
+						</div>
+
+						<button class="btn btn-primary" type="submit">Reset</button>
+
+					</form>
+
+				</div>
+
+			</div>
+		</div>
+	</div>
+
+	<!--Footer fragment-->
+	<div id="footer-fragment"></div>
+
+	<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+
+	<!-- Script for fetching, rendering & manipulating the navbar and footer -->
+	<script src="js/load_fragments.js"></script>
+
+	<!-- Script for the reset view -->
+	<script src="js/reset.js"></script>
+
+</body>
+
+</html>

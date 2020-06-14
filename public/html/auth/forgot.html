@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Grabbit - Forgot password</title>
+
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+	<link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+	<!--Navbar fragment-->
+	<div id="navbar-fragment"></div>
+
+	<!--The container holding all the content-->
+	<div id="container">
+		<div id="main">
+			<!--Make space between nav and content-->
+			<div id="nav-margin-bottom-div"></div>
+
+			<div class="container">
+
+				<div class="form-default form-forgot">
+
+					<div id="logo">
+						<img src="images/grabbitforgot.png" width="140" alt="">
+					</div>
+					<br>
+
+					<!--Spinner to display while executing ajax request-->
+					<div class="d-flex justify-content-center">
+						<div id="reset-spinner" class="spinner-border" role="status">
+							<span class="sr-only">Loading...</span>
+						</div>
+					</div>
+
+					<!--Container for the request status notifier-->
+					<div id="status-container"></div>
+
+					<h1 id="serverResponse"></h1>
+					<h3>Forgot password</h3>
+
+					<form id="reset-form">
+						<div class="form-group">
+							<label for="email">E-mail</label>
+							<input id="email-input" class="form-control" type="email" name="email" required>
+						</div>
+
+						<button type="submit" id="reset-submit-btn" class="btn btn-outline-light">Send</button>
+					</form>
+
+					<div id="options">
+						<span>
+							<a href="/login">Go back</a>
+						</span>
+					</div>
+
+				</div>
+
+			</div>
+		</div>
+	</div>
+
+	<!--Footer fragment-->
+	<div id="footer-fragment"></div>
+
+	<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+
+	<!-- Script for fetching, rendering & manipulating the navbar and footer -->
+	<script src="js/load_fragments.js"></script>
+
+	<!-- Script for view logic -->
+	<script src="js/forgot_password.js"></script>
+</body>
+
+</html>

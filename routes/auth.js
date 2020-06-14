@@ -24,7 +24,9 @@ const bcrypt = require("bcrypt")
 const rounds = 12
 
 router.get("/login", (req, res) => {
-    res.render("auth/login.ejs", { session: req.session })
+    
+    //Send the login.html file
+    res.sendFile("public/html/auth/login.html", { root: "." })
 })
 
 router.post("/login", ratelimits.login, async (req, res) => {
@@ -70,6 +72,7 @@ router.post("/login", ratelimits.login, async (req, res) => {
 })
 
 router.get("/logout", (req, res) => {
+
     //Destroy session
     req.session.destroy()
 
@@ -78,7 +81,9 @@ router.get("/logout", (req, res) => {
 })
 
 router.get("/signup", (req, res) => {
-    res.render("auth/signup.ejs", { session : req.session })
+    
+    //Send the signup.html file
+    res.sendFile("public/html/auth/signup.html", { root : "." })
 })
 
 router.post("/signup", ratelimits.signup, async (req, res) => {
@@ -116,7 +121,9 @@ router.post("/signup", ratelimits.signup, async (req, res) => {
 })
 
 router.get("/forgot", (req, res) => {
-    res.render("auth/forgot.ejs", { session : req.session })
+    
+    //Send the forgot.html file
+    res.sendFile("public/html/auth/forgot.html", { root: "." })
 })
 
 const knex = require("../database/knexfile.js")
