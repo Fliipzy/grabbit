@@ -13,7 +13,7 @@ $(document).ready(function () {
 
             //Check if session is authenticated
             if (session.authenticated) {
-
+                
                 //Add G-Chat to the left nav side
                 $("#navbar-left-items").append(`
                     <li class="nav-item active">

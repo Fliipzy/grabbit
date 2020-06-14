@@ -1,88 +1,105 @@
 //Wait till document is ready
 $(document).ready(() => {
 
-    //Get card container
-    let cardContainer = $("#store-card-container")
+	//Get card container
+	let cardContainer = $("#store-card-container")
 
-    //Get food type checkboxes
-    let cboxAll = $("#typeAll")
-    let cboxBurger = $("#typeBurger")
-    let cboxDessert = $("#typeDessert")
-    let cboxGrill = $("#typeGrill")
-    let cboxIndian = $("#typeIndian")
-    let cboxMexican = $("#typeMexican")
-    let cboxPizza = $("#typePizza")
-    let cboxSandwich = $("#typeSandwich")
-    let cboxSushi = $("#typeSushi")
-    let cboxTurkish = $("#typeTurkish")
-    let cboxVegan = $("#typeVegan")
+	//Get food type checkboxes
+	let cboxAll = $("#typeAll")
+	let cboxBurger = $("#typeBurger")
+	let cboxDessert = $("#typeDessert")
+	let cboxGrill = $("#typeGrill")
+	let cboxIndian = $("#typeIndian")
+	let cboxMexican = $("#typeMexican")
+	let cboxPizza = $("#typePizza")
+	let cboxSandwich = $("#typeSandwich")
+	let cboxSushi = $("#typeSushi")
+	let cboxTurkish = $("#typeTurkish")
+	let cboxVegan = $("#typeVegan")
 
-    //Checkboxes events
-    cboxAll.change(() => {
-        //If all type checkbox is checked
-        if (cboxAll.is(":checked")) {
+	//Checkboxes events
+	cboxAll.change(() => {
+		//If all type checkbox is checked
+		if (cboxAll.is(":checked")) {
 
-            //Uncheck all other checkboxes
-            cboxBurger.prop("checked", false)
-            cboxDessert.prop("checked", false)
-            cboxGrill.prop("checked", false)
-            cboxIndian.prop("checked", false)
-            cboxMexican.prop("checked", false)
-            cboxPizza.prop("checked", false)
-            cboxSandwich.prop("checked", false)
-            cboxSushi.prop("checked", false)
-            cboxTurkish.prop("checked", false)
-            cboxVegan.prop("checked", false)
-        }
-    })
+			//Uncheck all other checkboxes
+			cboxBurger.prop("checked", false)
+			cboxDessert.prop("checked", false)
+			cboxGrill.prop("checked", false)
+			cboxIndian.prop("checked", false)
+			cboxMexican.prop("checked", false)
+			cboxPizza.prop("checked", false)
+			cboxSandwich.prop("checked", false)
+			cboxSushi.prop("checked", false)
+			cboxTurkish.prop("checked", false)
+			cboxVegan.prop("checked", false)
+		}
+	})
 
-    //Add checkbox events to every checkbox
-    addCheckBoxEvent("#typeBurger")
-    addCheckBoxEvent("#typeDessert")
-    addCheckBoxEvent("#typeGrill")
-    addCheckBoxEvent("#typeIndian")
-    addCheckBoxEvent("#typeMexican")
-    addCheckBoxEvent("#typePizza")
-    addCheckBoxEvent("#typeSandwich")
-    addCheckBoxEvent("#typeSushi")
-    addCheckBoxEvent("#typeTurkish")
-    addCheckBoxEvent("#typeVegan")
+	//Add checkbox events to every checkbox
+	addCheckBoxEvent("#typeBurger")
+	addCheckBoxEvent("#typeDessert")
+	addCheckBoxEvent("#typeGrill")
+	addCheckBoxEvent("#typeIndian")
+	addCheckBoxEvent("#typeMexican")
+	addCheckBoxEvent("#typePizza")
+	addCheckBoxEvent("#typeSandwich")
+	addCheckBoxEvent("#typeSushi")
+	addCheckBoxEvent("#typeTurkish")
+	addCheckBoxEvent("#typeVegan")
 
-    //Get all stores data with ajax
-    $.ajax({
-        url: "/api/v1/stores",
-        method: "GET",
-        contentType: "application/json"
-    })
-    .done((stores) => {
-        //Foreach store in stores array
-        stores.forEach(store => {
-            addStoreCard(store)
-        });
-    })
+	//Get all stores data with ajax
+	$.ajax({
+		url: "/api/v1/stores",
+		method: "GET",
+		contentType: "application/json"
+	})
+		.done((stores) => {
+			//Foreach store in stores array
+			stores.forEach(store => {
+				addStoreCard(store)
+			});
+		})
 
-    let today = new Date()
-    let day = today.getDay()
-    let timeNowArray = `${today.getHours().toString()}:${today.getMinutes.toString()}`
+	let today = new Date()
+	let day = today.getDay()
+	let timeNow = `${today.getHours().toString()}:${today.getMinutes.toString()}`
 
-    //Appends new store card html to cards container
-    function addStoreCard(store) {
+	//Appends new store card html to cards container
+	function addStoreCard(store) {
 
-        let isOpen = false
+		let isOpen = false
 
-        let openingTime = store.opening_hours[day].opens_at
-        let closingTime = store.opening_hours[day].closes_at
-        let yesterdayClosingTime = store.opening_hours[day == 0 ? 6 : day - 1].closes_at
+		let openingTime = store.opening_hours[day].opens_at
+		let closingTime = store.opening_hours[day].closes_at
+		let yesterdayClosingTime = store.opening_hours[day == 0 ? 6 : day - 1].closes_at
 
-        //Check if time now is more than opening time and less than closing 
-        //time or if time is less than yesterdays closing time
-        if ((openingTime != null || closingTime != null) && 
-            (timeNowArray >= openingTime && timeNowArray <= closingTime) || timeNowArray < yesterdayClosingTime) {
-          isOpen = true
-        }
+		//If open and close times are not null
+		if (openingTime != null || closingTime != null) {
+
+			//If store closes before midnight
+			if (openingTime < closingTime) {
+				
+				//If timeNow is between open and close time
+				if (timeNow > openingTime && timeNow < closingTime) {
+					
+					//Then the store is open
+					isOpen = true
+				}
+			}
+			else {
+				//Check if store is still open from yesterdays time scheldule even though timeNow is less than openingTime
+				//Or
+				//If timeNow is more than todays openingTime
+				if ((timeNow < openingTime && timeNow > yesterdayClosingTime) ||
+					timeNow > openingTime) {
+					isOpen = true
+				}
+			}
+		}
 
 
-        cardContainer.append(`
+		cardContainer.append(`
         <div class="store-card card shadow-sm">
 
           <section>
@@ -114,9 +131,9 @@ $(document).ready(() => {
             <!--rating-->
             <div id="rating-container" class="store-card-rating">
               ${
-                '<span class="fa fa-star checked"></span>\n'.repeat(store.rating) +
-                '<span class="fa fa-star"></span>\n'.repeat(6 - store.rating)
-              }     
+			'<span class="fa fa-star checked"></span>\n'.repeat(store.rating) +
+			'<span class="fa fa-star"></span>\n'.repeat(6 - store.rating)
+			}     
               (${store.reviews_count})
             </div>
 
@@ -126,13 +143,13 @@ $(document).ready(() => {
 
         </div>
         `)
-    }
+	}
 })
 
 function addCheckBoxEvent(checkboxId) {
-    $(checkboxId).change(() => {
-        if ($(checkboxId).is(":checked")) {
-            $("#typeAll").prop("checked", false)
-        }
-    })
+	$(checkboxId).change(() => {
+		if ($(checkboxId).is(":checked")) {
+			$("#typeAll").prop("checked", false)
+		}
+	})
 }

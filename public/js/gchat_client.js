@@ -21,22 +21,22 @@ let colors = [
 //Wait till document is ready
 $(document).ready(async () => {
 
-    //Fetch the session data
-    await fetch("/api/v1/session").then((res) => {
+    //Fetch the session data and await response
+    await fetch("/api/v1/session").then(async (res) => {
 
-        //Get the session json data from the response
-        res.json().then((session) => {
-
+        //Await the session json data from the response
+        await res.json().then((session) => {
+            
             //Set the username input value accordingly
             $("#username-input").val(session.user.username)
             
         })
     })
-
+    
     //Query the DOM
     const messageInput = $("#message-input")
-    const username = $("#username-input").val()
     const messagesDiv = $("#chat-messages")
+    const username = $("#username-input").val()
     
     //Make connection
     let socket = io.connect("http://localhost:3000")
