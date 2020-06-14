@@ -1,10 +1,10 @@
 CREATE DATABASE  IF NOT EXISTS `grabbit` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
 USE `grabbit`;
--- MySQL dump 10.13  Distrib 8.0.19, for Win64 (x86_64)
+-- MySQL dump 10.13  Distrib 8.0.20, for Win64 (x86_64)
 --
 -- Host: localhost    Database: grabbit
 -- ------------------------------------------------------
--- Server version	8.0.19
+-- Server version	8.0.20
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -66,7 +66,7 @@ CREATE TABLE `review` (
   KEY `review__author_id_fk_idx` (`author_id`),
   CONSTRAINT `review__author_id_fk` FOREIGN KEY (`author_id`) REFERENCES `user` (`id`),
   CONSTRAINT `review__store_id_fk` FOREIGN KEY (`store_id`) REFERENCES `store` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -75,6 +75,7 @@ CREATE TABLE `review` (
 
 LOCK TABLES `review` WRITE;
 /*!40000 ALTER TABLE `review` DISABLE KEYS */;
+INSERT INTO `review` VALUES (2,'Fine, the sandwiches are a bit dry.',3,1,1),(3,'The buffet is okay..',4,1,2);
 /*!40000 ALTER TABLE `review` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -239,7 +240,7 @@ CREATE TABLE `store_opening_hours` (
   PRIMARY KEY (`id`),
   KEY `store_opening_hours__store_id_fk_idx` (`store_id`),
   CONSTRAINT `store_opening_hours__store_id_fk` FOREIGN KEY (`store_id`) REFERENCES `store` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -248,7 +249,7 @@ CREATE TABLE `store_opening_hours` (
 
 LOCK TABLES `store_opening_hours` WRITE;
 /*!40000 ALTER TABLE `store_opening_hours` DISABLE KEYS */;
-INSERT INTO `store_opening_hours` VALUES (1,1,1,'08:00:00','16:00:00'),(2,1,2,'08:00:00','16:00:00'),(3,1,3,NULL,NULL),(4,1,4,'08:00:00','16:00:00'),(5,1,5,'08:00:00','16:00:00'),(6,1,6,NULL,NULL),(7,1,7,NULL,NULL),(8,2,1,'08:00:00','16:00:00'),(9,2,2,'08:00:00','16:00:00'),(10,2,3,'08:00:00','16:00:00'),(11,2,4,'08:00:00','16:00:00'),(12,2,5,'08:00:00','16:00:00'),(13,2,6,NULL,NULL),(14,2,7,NULL,NULL);
+INSERT INTO `store_opening_hours` VALUES (15,1,0,NULL,NULL),(16,1,1,'08:00:00','16:00:00'),(17,1,2,'08:00:00','16:00:00'),(18,1,3,NULL,NULL),(19,1,4,'08:00:00','16:00:00'),(20,1,5,'08:00:00','16:00:00'),(21,1,6,NULL,NULL),(22,2,0,NULL,NULL),(23,2,1,'08:00:00','16:00:00'),(24,2,2,'08:00:00','16:00:00'),(25,2,3,'08:00:00','16:00:00'),(26,2,4,'08:00:00','16:00:00'),(27,2,5,'08:00:00','16:00:00'),(28,2,6,NULL,NULL);
 /*!40000 ALTER TABLE `store_opening_hours` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -421,6 +422,10 @@ LOCK TABLES `user_role` WRITE;
 INSERT INTO `user_role` VALUES (1,'admin'),(2,'user');
 /*!40000 ALTER TABLE `user_role` ENABLE KEYS */;
 UNLOCK TABLES;
+
+--
+-- Dumping events for database 'grabbit'
+--
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -431,4 +436,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-06-13 11:16:24
+-- Dump completed on 2020-06-14 18:29:21
