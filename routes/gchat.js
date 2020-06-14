@@ -1,9 +1,10 @@
 const router = require("express").Router()
 
 router.get("/", (req, res) => {
+
     //Check if session is authenticated
     if (req.session.authenticated) {
-        res.render("gchat.ejs", { session : req.session })
+        res.sendFile("public/html/gchat.html", { root : "."})
     }
     else {
         res.redirect("/login")
