@@ -1,5 +1,7 @@
 const router = require("express").Router()
+const Knex = require("../../database/knexfile")
 const Store = require("../../models/Store.js")
+
 
 router.get("/*", (req, res, next) => {
     
@@ -29,9 +31,18 @@ router.get("/", async (req, res) => {
         .innerJoin("user AS u",                 { "u.id": "store_admin.admin_id"})
             .where("store_admin.admin_id", 1)
 
-    
+            
+            
+
     //Foreach store in stores
     for (let index = 0; index < stores.length; index++) {
+
+        //Get number of reviews for each store
+        let reviewsCount = await Knex.table("review").where("store_id", stores[index].id).count()
+
+        //Append the reviews count to the store object
+        stores[index].reviews_count = reviewsCount[0]["count(*)"]
+        
 
         //Query opening hours data for corresponding store
         let openHours = await Store.relatedQuery("openingHours")

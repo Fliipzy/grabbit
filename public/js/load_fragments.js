@@ -17,6 +17,10 @@ $(document).ready(function () {
                 //Add G-Chat to the left nav side
                 $("#navbar-left-items").append(`
                     <li class="nav-item active">
+                        <a class="nav-link" href="/stores">Order food</a>
+                    </li>
+
+                    <li class="nav-item active">
                         <a class="nav-link" href="/gchat">G-Chat <span class="pill badge badge-success">Beta</span> </a>
                     </li>
                 `)

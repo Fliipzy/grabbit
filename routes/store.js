@@ -1,7 +1,7 @@
 const router = require("express").Router()
 
 router.get("/", (req, res) => {
-    res.render("stores.ejs", { session : req.session })
+    res.sendFile("public/html/stores.html", { root : "."})
 })
 
 module.exports = router

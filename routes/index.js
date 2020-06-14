@@ -5,12 +5,12 @@ router.get("/", (req, res) => {
     //Check if session is authenticated
     if (req.session.authenticated == true) {
 
-        //Redirect to stores endpoint
-        res.sendFile("public/html/stores.html", { root : "."})
+        //Redirect to the stores view
+        res.redirect("/stores")
     }
     else {
         
-        //Render the index view
+        //Send the index.html file
         res.sendFile("public/html/index.html", { root : "."})
     }
 })

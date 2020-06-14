@@ -117,7 +117,7 @@ $(document).ready(() => {
                 '<span class="fa fa-star checked"></span>\n'.repeat(store.rating) +
                 '<span class="fa fa-star"></span>\n'.repeat(6 - store.rating)
               }     
-              (4092)
+              (${store.reviews_count})
             </div>
 
             <button id="order-button" class="btn btn-warning">Order</button>
