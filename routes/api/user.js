@@ -1,5 +1,6 @@
 const router = require("express").Router()
 const User = require("../../models/User.js")
+const Knex = require("../../database/knexfile.js")
 
 router.get("/*", (req, res, next) => {
 
@@ -50,10 +51,27 @@ router.get("/:uid", async (req, res) => {
     let { uid } = req.params
 
     //Try to find the specific user
-    let user = await User.query().findById(uid)
+    let user = await User.query()
+    .select("user.id", "user.username", "user.active", "user.created_at", 
+            "info.first_name", "info.last_name", "info.email", "info.updated_at")
+    .innerJoin("user_information AS info", { "user.user_information_id" : "info.id" })
+    .findById(uid)
 
     //If user was found
     if (user != undefined) {
+
+        //Find all the stores this user owns or administrates
+        let stores = await Knex("store")
+        .select("store.id", "store.name", "sa.admin_type")
+        .innerJoin("store_admin as sa", { "store.id": "sa.store_id" })
+        .where("sa.admin_id", uid)
+
+        //If stores are not empty
+        if (stores.length > 0) {
+            
+            //Add stores data to user object
+            user.stores = stores
+        }
 
         //Send user json data
         res.json(user)

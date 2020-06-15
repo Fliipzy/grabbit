@@ -59,13 +59,13 @@
 								<div class="col">
 									<div class="form-group">
 										<label for="username-input"><strong>Username</strong></label>
-										<input id="username-input" type="text" class="form-control" placeholder="Username">
+										<input id="username-input" type="text" class="form-control" placeholder="Username" required>
 									</div>
 								</div>
 								<div class="col">
 									<div class="form-group">
 										<label for="email-input"><strong>Email</strong></label>
-										<input id="email-input" type="email" class="form-control" placeholder="Email">
+										<input id="email-input" type="email" class="form-control" placeholder="Email" required>
 									</div>
 								</div>
 							</div>
@@ -75,23 +75,23 @@
 								<div class="col">
 									<div class="form-group">
 										<label for="firstname-input"><strong>Firstname</strong></label>
-										<input id="firstname-input" type="text" class="form-control" placeholder="Firstname">
+										<input id="firstname-input" type="text" class="form-control" placeholder="Firstname" required>
 									</div>
 								</div>
 								<div class="col">
 									<div class="form-group">
 										<label for="lastname-input"><strong>Lastname</strong></label>
-										<input id="lastname-input" type="text" class="form-control" placeholder="Lastname">
+										<input id="lastname-input" type="text" class="form-control" placeholder="Lastname" required>
 									</div>
 								</div>
 							</div>
 							
-							<input type="button" class="btn btn-success" value="Save">
+							<input type="submit" class="btn btn-success" value="Save">
 
 							<div id="information-timestamps-container">
 								<div class="row">
-									<div class="col">Created at:</div>
-									<div class="col">Updated at:</div>
+									<div id="created-at" class="col"><strong>Created at: </strong></div>
+									<div id="updated-at" class="col"><strong>Updated at: </strong></div>
 								</div>
 							</div>
 
@@ -101,7 +101,9 @@
 
 						<!--Stores info-->
 						<h4>Stores</h4>
-						<p>You don't own or administrate any stores!</p>
+						<div id="store-table">
+							<p>You don't own or administrate any stores!</p>
+						</div>
 						<button class="btn btn-warning">New store</button>
 						
 						<hr>
@@ -118,6 +120,7 @@
 
 						</div>
 						
+						<br>
 
 					</div>
 
