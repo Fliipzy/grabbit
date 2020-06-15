@@ -1,0 +1,21 @@
+.container {
+	background: whitesmoke;
+	height: calc(100vh - 110px);
+}
+
+.right-col {
+	text-align: center;
+}
+
+#information-timestamps-container {
+	margin-top: 15px;
+}
+
+#information-timestamps-container p {
+	margin: 0px;
+}
+
+/* Danger zone card header */
+div.card-header.bg-danger {
+	color: white;
+}

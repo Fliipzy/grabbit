@@ -46,7 +46,7 @@ app.use("/", require("./routes/auth.js"))
 app.use("/", require("./routes/index.js"))
 app.use("/admin", require("./routes/admin.js"))
 app.use("/gchat", require("./routes/gchat.js"))
-app.use("/users", require("./routes/user.js"))
+app.use("/profile", require("./routes/profile.js"))
 app.use("/stores", require("./routes/store.js"))
 app.use("/products", require("./routes/product.js"))
 

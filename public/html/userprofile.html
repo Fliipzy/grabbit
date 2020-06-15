@@ -1,33 +1,145 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Grabbit - Profile</title>
 
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/style.css">
+	<link rel="stylesheet" href="/css/style.css">
+	<link rel="stylesheet" href="/css/profile.css">
 </head>
-<body>
-	<!--Navbar fragment-->
-    <div id="navbar-fragment"></div>
 
-    <!--The container holding all the content-->
-    <div id="container">
-        <div id="main">
+<body>
+	<!--Hidden user id-->
+	<input id="user-id-input" hidden type="text">
+
+	<!--Navbar fragment-->
+	<div id="navbar-fragment"></div>
+
+	<!--The container holding all the content-->
+	<div id="container">
+		<div id="main">
+
+			<div class="container">
 			
+				<!--Main row-->
+				<div class="row">
+
+					<!--Left column-->
+					<div class="col-3 right-col">
+						
+					</div>
+
+					<!--Right column-->
+					<div class="col-9">
+						<h1 id="username">Fliipzy</h1>
+					</div>
+				</div>
+
+				<div class="row">
+
+					<!--Left column-->
+					<div class="col-3 right-col">
+						<img class="border rounded shadow-sm" src="/svg/form/person.svg" width="175" height="175">
+					</div>
+
+					<!--Right column-->
+					<div class="col-9">
+
+						<!--User info-->
+						<h4>Information</h4>
+
+						<!--User information form-->
+						<form id="user-form">
+
+							<!--Form username, email row-->
+							<div class="row">
+								<div class="col">
+									<div class="form-group">
+										<label for="username-input"><strong>Username</strong></label>
+										<input id="username-input" type="text" class="form-control" placeholder="Username">
+									</div>
+								</div>
+								<div class="col">
+									<div class="form-group">
+										<label for="email-input"><strong>Email</strong></label>
+										<input id="email-input" type="email" class="form-control" placeholder="Email">
+									</div>
+								</div>
+							</div>
+
+							<!--Form firstname, lastname row-->
+							<div class="row">
+								<div class="col">
+									<div class="form-group">
+										<label for="firstname-input"><strong>Firstname</strong></label>
+										<input id="firstname-input" type="text" class="form-control" placeholder="Firstname">
+									</div>
+								</div>
+								<div class="col">
+									<div class="form-group">
+										<label for="lastname-input"><strong>Lastname</strong></label>
+										<input id="lastname-input" type="text" class="form-control" placeholder="Lastname">
+									</div>
+								</div>
+							</div>
+							
+							<input type="button" class="btn btn-success" value="Save">
+
+							<div id="information-timestamps-container">
+								<div class="row">
+									<div class="col">Created at:</div>
+									<div class="col">Updated at:</div>
+								</div>
+							</div>
+
+						</form>
+						
+						<hr>
+
+						<!--Stores info-->
+						<h4>Stores</h4>
+						<p>You don't own or administrate any stores!</p>
+						<button class="btn btn-warning">New store</button>
+						
+						<hr>
+
+						<!--Danger zone-->
+						<div class="card">
+
+							<div class="card-header bg-danger">Danger zone</div>
+							<div class="card-body">
+
+								<button class="btn btn-secondary">Disable profile</button>
+			
+							</div>
+
+						</div>
+						
+
+					</div>
+
+				</div>
+
+			</div>
+
 		</div>
-    </div>
+	</div>
 
 	<!--Footer fragment-->
-    <div id="footer-fragment"></div>
+	<div id="footer-fragment"></div>
 
-    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+	<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
 
-    <!-- Script for fetching, rendering & manipulating the navbar and footer -->
-	<script src="js/load_fragments.js"></script>
-	
+	<!-- Script for fetching, rendering & manipulating the navbar and footer -->
+	<script src="/js/load_fragments.js"></script>
+
+	<script src="/js/userprofile.js"></script>
+
 </body>
+
 </html>

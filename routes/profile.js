@@ -14,8 +14,11 @@ router.get("/*", (req, res, next) => {
     }
 })
 
-router.get("/:uid", (req, res) => {
+//Get user profile
+router.get("/", (req, res) => {
 
+    //Send the userprofile.html file
+    res.sendFile("public/html/userprofile.html", { root: "." })
 })
 
 module.exports = router
