@@ -63,7 +63,10 @@ $(document).ready(() => {
 
 	let today = new Date()
 	let day = today.getDay()
-	let timeNow = `${today.getHours().toString()}:${today.getMinutes.toString()}`
+
+	let hours = today.getHours().toString()
+	let minutes = today.getMinutes().toString()
+	let timeNow = (hours.length > 1 ? hours : "0" + hours) + ":" + (minutes.length > 1 ? minutes : "0" + minutes) + ":00"
 
 	//Appends new store card html to cards container
 	function addStoreCard(store) {
@@ -82,17 +85,14 @@ $(document).ready(() => {
 				
 				//If timeNow is between open and close time
 				if (timeNow > openingTime && timeNow < closingTime) {
-					
+
 					//Then the store is open
 					isOpen = true
 				}
 			}
 			else {
-				//Check if store is still open from yesterdays time scheldule even though timeNow is less than openingTime
-				//Or
-				//If timeNow is more than todays openingTime
-				if ((timeNow < openingTime && timeNow > yesterdayClosingTime) ||
-					timeNow > openingTime) {
+				
+				if (timeNow < openingTime && timeNow < yesterdayClosingTime) {
 					isOpen = true
 				}
 			}

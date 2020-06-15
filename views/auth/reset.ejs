@@ -6,38 +6,7 @@
     ]
 }) %>
 
-<!--Make space between nav and content-->
-<div id="nav-margin-bottom-div"></div>
 
-<div class="container">
-
-    <div class="form-default form-reset">
-
-        <form action="/reset/<%= token.uuid %>" method="post">
-
-            <h3>Reset password</h3>
-
-            <div class="form-group">
-
-                <label for="password">New password</label>
-                <input class="form-control" type="password" name="password" id="password" required>
-
-            </div>
-
-            <div class="form-group">
-
-                <label for="repassword">Re-enter password</label>
-                <input class="form-control" type="password" name="repassword" id="repassword">
-
-            </div>
-
-            <button class="btn btn-primary" type="submit">Reset</button>
-
-        </form>
-
-    </div>
-
-</div>
 
 <%- include("../partials/footer.ejs", {
     scripts : [

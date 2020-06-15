@@ -7,7 +7,7 @@ html, body {
 }
 
 #container {
-    min-height: 100%;
+    min-height: calc(100% - 60px);
 }
 
 #main {
@@ -44,6 +44,10 @@ footer a:hover {
 }
 
 /* Navbar style */
+
+nav {
+    height: 60px;
+}
 
 nav .nav-link {
     font-size: larger;

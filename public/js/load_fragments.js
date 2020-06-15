@@ -1,21 +1,21 @@
 //Wait till document is ready
 $(document).ready(function () {
 
-    //Load fragments html
-    $("#navbar-fragment").load("html/fragments/navbar.html")
-    $("#footer-fragment").load("html/fragments/footer.html")
+	//Load fragments html
+	$("#navbar-fragment").load("/html/fragments/navbar.html")
+	$("#footer-fragment").load("/html/fragments/footer.html")
 
-    //Fetch the session data
-    fetch("/api/v1/session").then((res) => {
+	//Fetch the session data
+	fetch("/api/v1/session").then((res) => {
 
-        //Get the session json data
-        res.json().then((session) => {
+		//Get the session json data
+		res.json().then((session) => {
 
-            //Check if session is authenticated
-            if (session.authenticated) {
-                
-                //Add G-Chat to the left nav side
-                $("#navbar-left-items").append(`
+			//Check if session is authenticated
+			if (session.authenticated) {
+
+				//Add G-Chat to the left nav side
+				$("#navbar-left-items").append(`
                     <li class="nav-item active">
                         <a class="nav-link" href="/stores">Order food</a>
                     </li>
@@ -25,8 +25,8 @@ $(document).ready(function () {
                     </li>
                 `)
 
-                //Add logout and user sign to right nav side
-                $("#navbar-right-items").append(`
+				//Add logout and user sign to right nav side
+				$("#navbar-right-items").append(`
                     <div class="user-sign">
                         <span>
                             <p>${session.user.username} <img src="/svg/form/person.svg"></p>
@@ -37,16 +37,16 @@ $(document).ready(function () {
                         <button id="auth-button" class="btn btn-outline-light my-2 my-sm-0" type="submit">Sign out</button>
                     </form>
                 `)
-            }
-            else {
+			}
+			else {
 
-                //Add login form to the right nav side
-                $("#navbar-right-items").append(`
+				//Add login form to the right nav side
+				$("#navbar-right-items").append(`
                     <form action="/login" method="GET">
                         <button id="auth-button" class="btn btn-outline-light my-2 my-sm-0" type="submit">Sign in</button>
                     </form>
                 `)
-            }
-        })
-    })
+			}
+		})
+	})
 })

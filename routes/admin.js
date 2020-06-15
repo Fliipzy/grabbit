@@ -18,7 +18,7 @@ router.get("/*", (req, res, next) => {
 router.get("/dashboard", (req, res) => {
 
     //Render admin dashboard
-    res.status(200).render("admin/dashboard.ejs", { session: req.session })
+    res.sendFile("public/html/admin/dashboard.html", { root: "." })
 })
 
 router.get("/dashboard/users", (req, res) => {

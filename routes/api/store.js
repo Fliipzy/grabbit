@@ -83,4 +83,25 @@ router.get("/", async (req, res) => {
     res.json(stores)
 })
 
+//Get specific store with matching sid
+router.get("/:sid", async (req, res) => {
+
+    //Retrieve the sid parameter
+    let { sid } = req.params
+    
+    //Try to find the specific store
+    let store = await Store.query().findById(sid)
+
+    //If store is undefined
+    if (store != undefined) {
+
+        //Return the store json data
+        res.json(store)
+    }
+    else {
+        res.status(404)
+    }
+    
+})
+
 module.exports = router
