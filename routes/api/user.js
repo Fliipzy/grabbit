@@ -16,6 +16,7 @@ router.get("/*", (req, res, next) => {
     }
 })
 
+//Get all users
 router.get("/", async (req, res) => {
 
     //Query all users from database
@@ -40,6 +41,26 @@ router.get("/", async (req, res) => {
     }
 
     res.json(users)
+})
+
+//Get specific user
+router.get("/:uid", async (req, res) => {
+
+    //Retrieve user id from params
+    let { uid } = req.params
+
+    //Try to find the specific user
+    let user = await User.query().findById(uid)
+
+    //If user was found
+    if (user != undefined) {
+
+        //Send user json data
+        res.json(user)
+    }
+    else {
+        res.status(404)
+    }
 })
 
 module.exports = router
