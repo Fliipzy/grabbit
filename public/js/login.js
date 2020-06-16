@@ -41,7 +41,16 @@ $(document).ready(() => {
 			//Either username or password credential was wrong
 			else {
 
+				//If given password was invalid
+				if (jsonRes.message == "invalid-pass") {
+					$("#login-alert #text").text("Incorrect password!")
+				}
+				else {
+					$("#login-alert #text").text("User not found!")
+				}
+
 				//Show message box prompting about bad credentials
+				$("#login-alert").show("fast")
 			}
 		})
 
@@ -67,6 +76,13 @@ $(document).ready(() => {
 
 		})
 
+	})
+
+	//Catch the login-alert-close-btn click event
+	$("#login-alert-close-btn").click(() => {
+
+		//Hide alert message box
+		$("#login-alert").hide("fast")
 	})
 
 })

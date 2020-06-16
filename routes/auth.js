@@ -80,14 +80,14 @@ router.post("/login", ratelimits.login, async (req, res) => {
         //Given password was wrong
         else {
             //Send 401 status code with json object
-            res.status(401).json({ status: "Unauthorized", message: "Wrong password" })
+            res.status(401).json({ status: "Unauthorized", message: "invalid-pass" })
         }
     }
 
     //User was not found
     else {
         //Send 401 status code with json object
-        res.status(401).json({ status: "Unauthorized", message: "User was not found" })
+        res.status(401).json({ status: "Unauthorized", message: "invalid-user" })
     }
 })
 
