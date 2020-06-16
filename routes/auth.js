@@ -55,9 +55,9 @@ router.post("/login", ratelimits.login, async (req, res) => {
                 role: user.role
             }
 
-             //If admin is signing in, redirect person to admin dashboard
+             //If admin is signing in
             if (user.role == "admin") {
-                res.status(200).redirect("/admin/dashboard")
+                res.status(200).redirect("/")
             } 
             else {
                 //Redirect the authenticated user to the index

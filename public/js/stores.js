@@ -82,7 +82,7 @@ $(document).ready(() => {
 
 			//If store closes before midnight
 			if (openingTime < closingTime) {
-				
+
 				//If timeNow is between open and close time
 				if (timeNow > openingTime && timeNow < closingTime) {
 
@@ -91,7 +91,7 @@ $(document).ready(() => {
 				}
 			}
 			else {
-				
+
 				if (timeNow < openingTime && timeNow < yesterdayClosingTime) {
 					isOpen = true
 				}
@@ -104,44 +104,46 @@ $(document).ready(() => {
 
           <section>
 
-            <!--Store card image-->
-            <div class="store-card-image rounded border" style="background-image: 
-            url('/images/stores/profile-images/${store.image_name}');">
+			<!--Store card image-->
+			<a href="/stores/${store.id}">
+				<div class="store-card-image rounded border" style="background-image: 
+				url('/images/stores/profile-images/${store.image_name}');">
+				</div>
+			</a>
 
-            </div>
+			<!--Store card description-->
+			<div class="store-card-description">
 
-            <!--Store card description-->
-            <div class="store-card-description">
+				<!--title-->
+				<div id="storeName" class="store-card-title ellipsis">${store.name}</div>
 
-              <!--title-->
-              <div id="storeName" class="store-card-title ellipsis">${store.name}</div>
 
-              <!--address-->
-              <div id="storeAddress" class="store-card-address ellipsis">${store.street_name} ${store.street_number}, 
-                ${store.postal_code} ${store.city_name}</div>
-              
-              <!--Food types-->
-              <div id="storeFoodTypes" class="store-card-foodtypes ellipsis">${store.food_types.join(", ")}</div>
+				<!--address-->
+				<div id="storeAddress" class="store-card-address ellipsis">${store.street_name} ${store.street_number}, 
+				${store.postal_code} ${store.city_name}</div>
+				
+				<!--Food types-->
+				<div id="storeFoodTypes" class="store-card-foodtypes ellipsis">${store.food_types.join(", ")}</div>
 
-              <!--open status-->
-              <span id="storeStatus" class="store-status badge badge-${isOpen ? "success" : "danger"}">${isOpen ? "Open" : "Closed"}</span>
+				<!--open status-->
+				<span id="storeStatus" class="store-status badge badge-${isOpen ? "success" : "danger"}">${isOpen ? "Open" : "Closed"}</span>
 
-            </div>
+			</div>
 
-            <!--rating-->
-            <div id="rating-container" class="store-card-rating">
-              ${
+			<!--rating-->
+			<div id="rating-container" class="store-card-rating">
+			${
 			'<span class="fa fa-star checked"></span>\n'.repeat(store.rating) +
 			'<span class="fa fa-star"></span>\n'.repeat(6 - store.rating)
 			}     
-              (${store.reviews_count})
-            </div>
+				(${store.reviews_count})
+			</div>
 
-            <button id="order-button" class="btn btn-warning">Order</button>
+			<a id="order-button" class="btn btn-warning" href="/stores/${store.id}">Order</a>
 
-          </section>
+			</section>
 
-        </div>
+		</div>
         `)
 	}
 })

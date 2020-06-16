@@ -6,7 +6,8 @@ router.get("/", (req, res) => {
     if (req.session.authenticated == true) {
 
         //Redirect to the stores view
-        res.redirect("/stores")
+        //res.redirect("/stores")
+        res.sendFile("public/html/index.html", { root : "."})
     }
     else {
         
