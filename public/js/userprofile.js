@@ -114,4 +114,9 @@ $(document).ready(async () => {
 		.then(data => console.log(data))
 	})
 
+	//On deactive profile button clicked
+	$("#deactive-profile-btn").click(() => {
+		console.log("okayokay")
+	})
+
 })

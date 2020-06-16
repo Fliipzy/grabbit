@@ -104,7 +104,8 @@ router.put("/:uid/update", async (req, res) => {
             last_name: lastname,
             email: email
         })
-        
+
+    //TODO: find a real way to check if zero rows has been updated.         
     if (userUpdated > 0 && infoUpdated > 0) {
 
         //Return status 200 OK

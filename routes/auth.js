@@ -229,4 +229,8 @@ router.post("/reset/:uuid", async (req, res) => {
     }
 })
 
+router.put("/deactive", async (req, res) => {
+    
+})
+
 module.exports = router

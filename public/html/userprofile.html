@@ -30,7 +30,7 @@
 
 					<!--Left column-->
 					<div class="col-3 right-col">
-						
+
 					</div>
 
 					<!--Right column-->
@@ -60,13 +60,15 @@
 								<div class="col">
 									<div class="form-group">
 										<label for="username-input"><strong>Username</strong></label>
-										<input id="username-input" type="text" class="form-control" placeholder="Username" required>
+										<input id="username-input" type="text" class="form-control"
+											placeholder="Username" required>
 									</div>
 								</div>
 								<div class="col">
 									<div class="form-group">
 										<label for="email-input"><strong>Email</strong></label>
-										<input id="email-input" type="email" class="form-control" placeholder="Email" required>
+										<input id="email-input" type="email" class="form-control" placeholder="Email"
+											required>
 									</div>
 								</div>
 							</div>
@@ -76,18 +78,20 @@
 								<div class="col">
 									<div class="form-group">
 										<label for="firstname-input"><strong>Firstname</strong></label>
-										<input id="firstname-input" type="text" class="form-control" placeholder="Firstname" required>
+										<input id="firstname-input" type="text" class="form-control"
+											placeholder="Firstname" required>
 									</div>
 								</div>
 								<div class="col">
 									<div class="form-group">
 										<label for="lastname-input"><strong>Lastname</strong></label>
-										<input id="lastname-input" type="text" class="form-control" placeholder="Lastname" required>
+										<input id="lastname-input" type="text" class="form-control"
+											placeholder="Lastname" required>
 									</div>
 								</div>
 							</div>
-							
-							<button id="save-submit-button" type="submit" class="btn btn-success" >Save</button>
+
+							<button id="save-submit-button" type="submit" class="btn btn-success">Save</button>
 
 							<div id="information-timestamps-container">
 								<div class="row">
@@ -97,7 +101,7 @@
 							</div>
 
 						</form>
-						
+
 						<hr>
 
 						<!--Stores info-->
@@ -105,8 +109,8 @@
 						<div id="store-table">
 							<p>You don't own or administrate any stores!</p>
 						</div>
-						<button class="btn btn-warning">New store</button>
-						
+						<button id="new-store-btn" class="btn btn-warning">New store</button>
+
 						<hr>
 
 						<!--Danger zone-->
@@ -115,12 +119,12 @@
 							<div class="card-header bg-danger">Danger zone</div>
 							<div class="card-body">
 
-								<button class="btn btn-secondary">Disable profile</button>
-			
+								<button class="btn btn-secondary" data-toggle="modal" data-target="#deactive-profile-modal">Disable profile</button>
+
 							</div>
 
 						</div>
-						
+
 						<br>
 
 					</div>
@@ -130,6 +134,28 @@
 			</div>
 
 		</div>
+
+		<!--Modal for disable profile button-->
+		<div id="deactive-profile-modal" class="modal fade" tabindex="-1" role="dialog">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title">Deactivating profile</h5>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body">
+						<p>Are you sure you want to deactivate your profile?</p>
+					</div>
+					<div class="modal-footer">
+						<button id="deactive-profile-btn" type="button" class="btn btn-warning">Yes</button>
+						<button type="button" class="btn btn-dark" data-dismiss="modal">Close</button>
+					</div>
+				</div>
+			</div>
+		</div>
+
 	</div>
 
 	<!--Footer fragment-->
