@@ -81,4 +81,41 @@ router.get("/:uid", async (req, res) => {
     }
 })
 
+router.put("/:uid/update", async (req, res) => {
+    
+    //Retrieve the uid from the params
+    let { uid } = req.params
+
+    //Retrieve the json data from the body
+    let { username, email, firstname, lastname } = req.body
+
+    //Try to update the user
+    let userUpdated = await User.query()
+        .findById(uid)
+        .patch({
+            username: username
+        })
+    
+    //Try to update the user information
+    let infoUpdated  = await User.relatedQuery("information")
+        .for(uid)
+        .patch({
+            first_name: firstname,
+            last_name: lastname,
+            email: email
+        })
+        
+    if (userUpdated > 0 && infoUpdated > 0) {
+
+        //Return status 200 OK
+        res.status(200).json({status: "OK"})
+    } 
+    else {
+
+        //Return generic status 400 Bad request
+        res.status(400).json({status: "Bad request"})
+    }
+
+})
+
 module.exports = router

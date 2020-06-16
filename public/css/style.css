@@ -43,6 +43,10 @@ footer a:hover {
     text-decoration: none;
 }
 
+.hide-href:hover {
+    text-decoration: none;
+}
+
 /* Navbar style */
 
 nav {

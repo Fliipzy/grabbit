@@ -14,6 +14,7 @@ app.use(helmet())
 //Setup bodyparsing
 const bodyparser = require("body-parser")
 app.use(bodyparser.urlencoded({extended: false}))
+app.use(bodyparser.json())
 
 //Static serving from ./public
 app.use(express.static("public"))

@@ -27,11 +27,14 @@ $(document).ready(function () {
 
 				//Add logout and user sign to right nav side
 				$("#navbar-right-items").append(`
-                    <div class="user-sign">
-                        <span>
-                            <p>${session.user.username} <img src="/svg/form/person.svg"></p>
-                        </span>
-                    </div>
+				
+					<a class="hide-href" href="/profile">
+						<div class="user-sign">
+							<span>
+								<p>${session.user.username} <img src="/svg/form/person.svg"></p>
+							</span>
+						</div>
+					</a>
 
                     <form action="/logout" method="GET">
                         <button id="auth-button" class="btn btn-outline-light my-2 my-sm-0" type="submit">Sign out</button>

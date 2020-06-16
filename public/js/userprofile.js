@@ -44,6 +44,7 @@ $(document).ready(async () => {
 							<th>#</th>
 							<th>Name</th>
 							<th>Role</th>
+							<th></th>
 						</tr>
 					</thead>
 					<tbody id="table-body">
@@ -55,16 +56,62 @@ $(document).ready(async () => {
 			//For each store in user.stores
 			for (let index = 0; index < user.stores.length; index++) {
 
+				let roleName;
+
+				switch (user.stores[index].admin_type) {
+					case 1:
+						roleName = "Owner"
+						break
+					case 2:
+						roleName = "Full access"
+						break
+					case 3:
+						roleName = "Read only"
+						break
+				}
+
 				//Add each store data to table
 				$("#table-body").append(`
 					<tr>
 						<th>${index}</th>
 						<td>${user.stores[index].name}</td>
-						<td>${user.stores[index].admin_type}</td>
+						<td>${roleName}</td>
+						<td>
+							<button class="btn btn-dark btn-icon"><i class="fa fa-gear"></i></button>
+						</td>
 					<tr>
 				`)
 			}
 		}
 	}))
+
+	//Catch the save profile settings submit event
+	$("#user-form").on("submit", (event) => {
+
+		//Prevent page reload
+		event.preventDefault()
+
+		//Get user settings input values
+		let username = $("#username-input").val()
+		let email = $("#email-input").val()
+		let firstname = $("#firstname-input").val()
+		let lastname = $("#lastname-input").val()
+
+		//Create fetch put request
+		fetch(`/api/v1/users/${uid}/update`, {
+			method: "PUT",
+			headers: {
+				"Content-type": "application/json; charset=UTF-8" 
+			},
+			body: JSON.stringify({
+				username: username,
+				email: email,
+				firstname: firstname,
+				lastname: lastname
+			})
+		})
+		.then(response => response.json())
+		.then(data => console.log(data))
+	})
 
 })
