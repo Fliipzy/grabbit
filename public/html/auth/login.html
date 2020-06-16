@@ -7,6 +7,7 @@
 	<title>Grabbit - Login</title>
 
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	<link rel="stylesheet" href="css/style.css">
 </head>
 
@@ -31,7 +32,8 @@
 					<div id="status-container"></div>
 
 					<h3>Sign in</h3>
-					<form action="/login" method="post">
+
+					<form id="login-form">
 
 						<div class="form-group">
 							<label for="username">Username</label>
@@ -48,11 +50,35 @@
 						</div>
 
 					</form>
+
 					<div id="options">
 						<span>
 							<a href="/signup">Sign up</a>
 							<a href="/forgot">Forgot pass</a>
 						</span>
+					</div>
+
+				</div>
+
+				<!-- Re-activate profile modal -->
+				<div class="modal fade" id="reactivate-profile-modal" tabindex="-1" role="dialog"
+					aria-labelledby="modal-label" aria-hidden="true">
+					<div class="modal-dialog" role="document">
+						<div class="modal-content">
+							<div class="modal-header bg-secondary">
+								<h5 class="modal-title text-light" id="modal-label">Profile is deactivated <i class="fa fa-exclamation-circle"></i></h5>
+								<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+									<span aria-hidden="true">&times;</span>
+								</button>
+							</div>
+							<div class="modal-body">
+								<p>Your profile is deactivated, do you want to re-activate it?</p>
+							</div>
+							<div class="modal-footer">
+								<button id="reactivate-profile-btn" type="button" class="btn btn-primary" data-dismiss="modal">Yes</button>
+								<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+							</div>
+						</div>
 					</div>
 				</div>
 
@@ -72,7 +98,7 @@
 
 	<!-- Script for the login view -->
 	<script src="/js/login.js"></script>
-	
+
 </body>
 
 </html>

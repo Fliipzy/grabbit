@@ -3,6 +3,8 @@ const ratelimits = require("../configs/limiters.js")
 const User = require("../models/User.js")
 const UserInformation = require("../models/UserInformation.js")
 
+const knex = require("../database/knexfile.js")
+
 //Mail reset dependencies
 const { v4: uuidv4 } = require("uuid")
 const nodemailer = require("nodemailer")
@@ -21,6 +23,7 @@ const transporter = nodemailer.createTransport({
 
 //Importing bcrypt to hash passwords
 const bcrypt = require("bcrypt")
+const { response } = require("express")
 const rounds = 12
 
 router.get("/login", (req, res) => {
@@ -36,7 +39,7 @@ router.post("/login", ratelimits.login, async (req, res) => {
 
     //Try to find a user in db where username matches
     let user = await User.query()
-        .select("user.id", "user.username", "user.password", "role.role")
+        .select("user.id", "user.username", "user.password", "user.active", "role.role")
         .joinRelated("role")
         .where("username", username)
         .first()
@@ -47,27 +50,41 @@ router.post("/login", ratelimits.login, async (req, res) => {
         //Compare given password with hashed password
         if (await bcrypt.compare(password, user.password)) {
 
-            //Append these attributes to the session object
-            req.session.authenticated = true
-            req.session.user = {
-                id: user.id,
-                username: user.username,
-                role: user.role
+            //If user profile is deactivated
+            if (!user.active) {
+                
+                //Send 403 Forbidden status code with json object
+                res.status(403).json({ status: "Forbidden", message: "Account has been deactivated" })
             }
 
-             //If admin is signing in
-            if (user.role == "admin") {
-                res.status(200).redirect("/")
-            } 
+            //Credentials are okay
             else {
-                //Redirect the authenticated user to the index
-                res.status(200).redirect("/stores")
+
+                //Append new session attributes to session object
+                req.session.authenticated = true
+                req.session.user = {
+                    id: user.id,
+                    username: user.username,
+                    role: user.role
+                }
+    
+                //Send 200 status code with json object
+                res.status(200).json({ status: "OK" })
             }
+
         }
-    } 
+
+        //Given password was wrong
+        else {
+            //Send 401 status code with json object
+            res.status(401).json({ status: "Unauthorized", message: "Wrong password" })
+        }
+    }
+
+    //User was not found
     else {
-        //Redirect to login page with status code 401
-        res.status(401).redirect("/login#failed")
+        //Send 401 status code with json object
+        res.status(401).json({ status: "Unauthorized", message: "User was not found" })
     }
 })
 
@@ -125,8 +142,6 @@ router.get("/forgot", (req, res) => {
     //Send the forgot.html file
     res.sendFile("public/html/auth/forgot.html", { root: "." })
 })
-
-const knex = require("../database/knexfile.js")
 
 router.post("/forgot", async (req, res) => {
     //Retrieve email from request body

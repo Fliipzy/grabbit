@@ -1,28 +1,55 @@
-//Checks if url has a hash appended then displays message accordingly
-let hash = window.location.hash.replace("#", "");
-let element = document.getElementById("status-container")
+$(document).ready(() => {
 
-if (hash) {
-	let status = { alertType: undefined, text: undefined }
-	let foundStatus = true
-	switch (hash) {
-		case "failed":
-			status.alertType = "danger"
-			status.text = `Incorrect username or password`
-			break
+	//Catch the login-form submit event
+	$("#login-form").on("submit", (event) => {
 
-		case "signup-success":
-			status.alertType = "success"
-			status.text = `Welcome to Grabbit, please log in!`
-			break
+		//Prevent page from refreshing
+		event.preventDefault()
 
-		default:
-			foundStatus = false
-			break
-	}
-	if (foundStatus) {
-		element.innerHTML = `<div class="alert alert-${status.alertType}" role="alert">
-                                ${status.text}
-                            </div>`
-	}
-}
+		//Retrieve the login input values
+		let username = $("#username").val()
+		let password = $("#password").val()
+
+		//Create fetch POST request to /login endpoint
+		fetch("/login", {
+			method: "POST",
+			headers: {
+				"Content-type": "application/json; charset=UTF-8" 
+			},
+			body: JSON.stringify({
+				username: username,
+				password: password
+			})
+		})
+		.then(response => response.json())
+		.then((jsonRes) => {
+			
+			//If login credentials was authenticated
+			if (jsonRes.status == "OK") {
+				
+				//Redirect authenticated user to index page
+				window.location.replace("/")
+			}
+
+			//Else if user profile is deactivated
+			else if (jsonRes.status == "Forbidden") {
+
+				//Show re-active profile modal
+				$("#reactivate-profile-modal").modal("show")
+			}
+
+			//Either username or password credential was wrong
+			else {
+
+				//Display bad credentials box
+			}
+		})
+
+	})
+
+	//Catch the reactivate-profile-btn click event
+	$("#reactivate-profile-btn").click(() => {
+		
+	})
+
+})
