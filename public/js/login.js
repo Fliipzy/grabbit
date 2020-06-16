@@ -41,15 +41,32 @@ $(document).ready(() => {
 			//Either username or password credential was wrong
 			else {
 
-				//Display bad credentials box
+				//Show message box prompting about bad credentials
 			}
 		})
 
 	})
 
 	//Catch the reactivate-profile-btn click event
-	$("#reactivate-profile-btn").click(() => {
+	$("#reactivate-profile-btn").click(async () => {
 		
+		//Create fetch GET request to activate profile
+		fetch("/activate")
+		.then(response => {
+
+			//If response status code is 200 OK
+			if (response.status == 200) {
+
+				//Redirect authenticated & re-activated user to index page
+				window.location.replace("/")
+			}
+			else {
+
+				//Show message box prompting about re-activation error
+			}
+
+		})
+
 	})
 
 })

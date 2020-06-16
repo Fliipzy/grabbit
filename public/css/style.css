@@ -19,6 +19,20 @@ input {
     filter: none;
 }
 
+/* For changing the default chrome webkit autofill */
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus, 
+input:-webkit-autofill:active,
+input:-webkit-autofill::first-line  {
+    font-family: 'Varela Round', sans-serif;
+    font-size: medium;
+    -webkit-font-feature-settings: "dlig";
+    -webkit-box-shadow: 0 0 0 30px #4c565f inset !important;
+    -webkit-text-fill-color: white !important;
+    transition: background-color 5000s ease-in-out 0s;
+}
+
 /* Footer style */
 footer#footer {
     color: white;

@@ -50,6 +50,14 @@ router.post("/login", ratelimits.login, async (req, res) => {
         //Compare given password with hashed password
         if (await bcrypt.compare(password, user.password)) {
 
+            //Append new session attributes to show authentication in future requests.
+            req.session.authenticated = false
+            req.session.user = {
+                id: user.id,
+                username: user.username,
+                role: user.role
+            }
+
             //If user profile is deactivated
             if (!user.active) {
                 
@@ -60,13 +68,8 @@ router.post("/login", ratelimits.login, async (req, res) => {
             //Credentials are okay
             else {
 
-                //Append new session attributes to session object
+                //Change session authenticated attribute to true
                 req.session.authenticated = true
-                req.session.user = {
-                    id: user.id,
-                    username: user.username,
-                    role: user.role
-                }
     
                 //Send 200 status code with json object
                 res.status(200).json({ status: "OK" })
@@ -246,6 +249,38 @@ router.post("/reset/:uuid", async (req, res) => {
 
 router.get("/activate", async (req, res) => {
 
+    //Check if session attribute authenticated is false
+    if (!req.session.authenticated) {
+
+        //Retrieve the uid from session data
+        let uid = req.session.user.id
+        
+        //Update users profile status to activated
+        let userUpdated = await User.query()
+            .findById(uid)
+            .patch({
+                active: 1
+            })
+        
+        //Check if more than 0 rows were affected
+        if (userUpdated > 0) {
+            
+            //Change session authenticated attribute to true
+            req.session.authenticated = true 
+
+            //Send status code 200 OK 
+            res.sendStatus(200)
+        }
+        else {
+
+            //Send status code 500 internal server error
+            res.sendStatus(500) 
+        }
+    }
+    else {
+        //Just send 200 because technically the user is activated??
+        res.sendStatus(200)
+    }
 })
 
 router.get("/deactivate", async (req, res) => {
@@ -269,18 +304,18 @@ router.get("/deactivate", async (req, res) => {
             //Destroy session
             req.session.destroy()
 
-            //Send HTTP status code 200 OK
+            //Send status code 200 OK
             res.sendStatus(200)
         } 
         else {
 
-            //Send HTTP status code 500 Internal Server Error
+            //Send status code 500 Internal Server Error
             res.sendStatus(500)
         }
     }
     else {
 
-        //Send HTTP status code 400 Bad Request
+        //Send status code 400 Bad Request
         res.sendStatus(400)
     }
 })
