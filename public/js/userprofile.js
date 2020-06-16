@@ -115,8 +115,25 @@ $(document).ready(async () => {
 	})
 
 	//On deactive profile button clicked
-	$("#deactive-profile-btn").click(() => {
-		console.log("okayokay")
+	$("#deactive-profile-btn").click(async () => {
+		
+		//Create fetch get request to deactive user
+		await fetch("/deactivate", {
+			method: "GET",
+			headers: {
+				"Content-type": "text/html; charset=UTF-8"
+			}
+		})
+		.then(response => {
+
+			//If response has HTTP status 200
+			if (response.status == 200) {
+				
+				//Redirect to /login endpoint
+				window.location.replace("/login")
+			}
+		})
+
 	})
 
 })

@@ -229,8 +229,45 @@ router.post("/reset/:uuid", async (req, res) => {
     }
 })
 
-router.put("/deactive", async (req, res) => {
-    
+router.get("/activate", async (req, res) => {
+
+})
+
+router.get("/deactivate", async (req, res) => {
+
+    //Check if session is authenticated
+    if (req.session.authenticated) {
+        
+        //Retrieve the uid from session data
+        let uid = req.session.user.id
+
+        //Update users profile status to deactivated
+        let userUpdated = await User.query()
+            .findById(uid)
+            .patch({
+                active: 0
+            })
+        
+        //Check if more than 0 rows were affected
+        if (userUpdated > 0) {
+
+            //Destroy session
+            req.session.destroy()
+
+            //Send HTTP status code 200 OK
+            res.sendStatus(200)
+        } 
+        else {
+
+            //Send HTTP status code 500 Internal Server Error
+            res.sendStatus(500)
+        }
+    }
+    else {
+
+        //Send HTTP status code 400 Bad Request
+        res.sendStatus(400)
+    }
 })
 
 module.exports = router
