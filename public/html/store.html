@@ -6,7 +6,9 @@
 	<title>Grabbit - Store</title>
 
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
-    <link rel="stylesheet" href="/css/style.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" href="/css/style.css">
+	<link rel="stylesheet" href="/css/store.css">
 </head>
 <body>
 
@@ -16,8 +18,85 @@
 	<!--The container holding all the content-->
     <div id="container">
         <div id="main">
-			
 
+			<div class="container">
+				
+				<!--Top store info div-->
+				<div id="store-top-container">
+
+					<img id="store-image" class="store-image border rounded shadow-sm" width="150" height="150">
+
+					<div id="store-information-container">
+
+						<h1 id="store-name"></h1>
+						<h5 id="store-address"></h5>
+
+						<!--Store star rating-->
+						<div id="store-rating-container"></div>
+
+					</div>
+
+				</div>
+				
+				<hr>
+
+				<!--Mid info row-->
+				<div id="store-mid-container" class="row">
+					<!--Categories card col-->
+					<div class="col-2">
+
+						<!--Categories label-->
+						<h5><strong>Categories</strong></h5>
+
+						<div id="product-categories-card" class="card">
+							<div class="card-body">
+								<div class="list-group"></div>
+							</div>
+						</div>
+					</div>
+
+					<!--Middle options col-->
+					<div class="col-7">
+
+						<!--Header links-->
+						<header id="main-header">
+							<div>
+								<h5><strong class="focus">Menu</strong></h5>
+							</div>
+							<div>
+								<h5><strong>Reviews</strong></h5>  
+							</div>
+							<div>
+								<h5><strong>Info</strong></h5>  
+							</div>
+						</header>
+
+						<!--Menu card-->
+						<div id="menu-card" class="card">
+
+							<!--Food products-->
+							<div class="card-body">
+
+							</div>
+						</div>
+
+					</div>
+
+					<!--Shopping cart col-->
+					<div class="col-3">
+						<h5><strong>Shopping cart</strong> <i class="fa fa-shopping-cart" aria-hidden="true"></i></h5>
+
+						<div id="shopping-cart" class="card">
+							<div class="card-body">
+								<button class="btn btn-warning">Order now</button>
+							</div>
+						</div>
+					</div>
+
+				</div>
+				
+			</div>
+			
 		</div>
     </div>
 	
