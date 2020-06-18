@@ -1,6 +1,5 @@
 $(document).ready(async () => {
 
-
 	//Retrieve the sid parameter
 	let href = window.location.href.split("/")
 	let sid = href.pop()
@@ -65,7 +64,7 @@ $(document).ready(async () => {
 						<div class="product-right">
 							<div class="product-right-container">
 								<div class="product-price">${products[index].price} kr</div>
-								<button class="btn btn-dark btn-icon"><i class="fa fa-plus"></i></button>
+								<button class="add-item-btn btn btn-dark btn-icon"><i class="fa fa-plus"></i></button>
 							</div>
 						</div>
 					</div>
@@ -76,4 +75,12 @@ $(document).ready(async () => {
 
 		})
 
+	//Shopping cart
+	
+	let products = []
+
+	$(".add-item-btn").click(() => {
+		console.log("hello")
+	})
 })
+

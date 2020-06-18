@@ -64,6 +64,16 @@ html, body {
     margin-bottom: 10px;
 }
 
+#shopping-cart-col {
+    padding-left: 0px;
+}
+
+#shopping-cart-col .card-body {
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-bottom: 10px;
+}
+
 /* Products */
 
 .product {
@@ -118,4 +128,30 @@ hr.dashed {
     margin-top: 9px;
 }
 
-/*  */
+/* Shopping cart */
+
+#shopping-cart hr {
+    margin-top: 8px;
+    margin-bottom: 8px;
+}
+
+#order-btn {
+    width: 100%;
+}
+
+.product-item-name {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.remove-btn {
+    padding: 0px;
+    width: 15px;
+    height: 15px;
+}
+
+.remove-btn span {
+    position: relative;
+    top: -6.0px;
+    left: 0.3px;
+}
