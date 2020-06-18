@@ -54,7 +54,17 @@
 }
 
 /* Main view column */
+
 #main-view {
+    padding: 10px;
     height: 100%;
     background: rgb(224, 224, 224);
+}
+
+/* jQuery Data tables */
+
+#stores-table,
+#users-table,
+#products-table {
+    width: 100%;
 }

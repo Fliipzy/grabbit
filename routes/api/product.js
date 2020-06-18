@@ -9,7 +9,7 @@ router.get("/:sid", async (req, res) => {
 
     //Query all products for store with given sid
     let products = await Store.relatedQuery("products").for(sid)
-        .select("product.id", "product.name", "product.description", "product.price",
+        .select("product.id", "product.name", "product.description", "product.price", "product.created_at",
                 "t.name as food_type")
         .innerJoin("product_type as t", { "product.type": "t.id" })
 

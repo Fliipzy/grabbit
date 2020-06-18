@@ -9,6 +9,7 @@
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
 	<link rel="stylesheet" href="/css/style.css">
 	<link rel="stylesheet" href="/css/dashboard.css">
+	<link rel="stylesheet" href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css">
 
 </head>
 
@@ -80,17 +81,64 @@
 
 						<!--Users-->
 						<div class="tab-pane  show active" id="list-users">
-							Users
+
+							<h1>Users</h1>
+
+							<table id="users-table" class="display">
+							</table>
+
 						</div>
 
 						<!--Stores-->
 						<div class="tab-pane" id="list-stores">
-							Stores
+
+							<h1>Stores</h1>
+
+							<table id="stores-table" class="display">
+							</table>
+
 						</div>
 
 						<!--Products-->
 						<div class="tab-pane" id="list-products">
-							Products
+
+							<div id="products-table-header">
+								<h1>Products</h1>
+								<form id="products-search-form">
+									<input type="text" id="store-id-input" placeholder="Store ID">
+									<button type="submit" class="btn btn-primary">Search</button>
+								</form>
+							</div>
+
+							<table id="products-table" class="display">
+								<thead>
+									<tr>
+										<th>Name</th>
+										<th>Price</th>
+										<th>Type</th>
+										<th>Description</th>
+										<th>Created at</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+
+									</tr>
+									<tr>
+
+									</tr>
+									<tr>
+
+									</tr>
+									<tr>
+
+									</tr>
+									<tr>
+
+									</tr>
+								</tbody>
+							</table>
+
 						</div>
 
 					  </div>
@@ -107,6 +155,7 @@
 	<div id="footer-fragment"></div>
 
 	<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+	<script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
 
