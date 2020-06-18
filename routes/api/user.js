@@ -5,7 +5,7 @@ const Knex = require("../../database/knexfile.js")
 router.get("/*", (req, res, next) => {
 
     //Make sure every request is authenticated and has admin role 
-    if (req.session.user && req.session.user.role == "admin") {
+    if (req.session.user) {
 
         //Proceed to request specific endpoint
         next()

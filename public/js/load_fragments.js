@@ -23,11 +23,23 @@ $(document).ready(function () {
                     <li class="nav-item active">
                         <a class="nav-link" href="/gchat">G-Chat <span class="pill badge badge-success">Beta</span> </a>
                     </li>
-                `)
+				`)
+
+				//If user is admin
+				if (session.user.role == "admin") {
+					$("#navbar-right-items").append(`
+						<div class="navbar-nav mr-auto">
+							<li class="nav-item active">
+								<a class="nav-link" href="/admin/dashboard">admin <i class="fa fa-cog" aria-hidden="true"></i></a>
+							</li>
+						</div>
+					`)
+				}
 
 				//Add logout and user sign to right nav side
 				$("#navbar-right-items").append(`
 				
+
 					<a class="hide-href" href="/profile">
 						<div class="user-sign">
 							<span>
