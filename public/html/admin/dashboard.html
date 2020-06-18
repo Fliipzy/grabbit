@@ -16,14 +16,92 @@
 	<!--Navbar fragment-->
 	<div id="navbar-fragment"></div>
 
-	<!--The container holding all the content-->
-	<div id="container">
-		<div id="main">
-			
-			hrllo
-			
+	<div id="dashboard-container">
+
+		<!--Dashboard middle row-->
+		<div id="middle-row" class="row no-gutters">
+
+			<!--Options panel col-->
+			<div id="what" class="col-2">
+
+				<!--Options panel container-->
+				<div id="options-panel">
+
+					<!--Options panel header-->
+					<div id="dashboard-title-container">
+						<span>
+							<h4 class="dashboard-title">Admin dashboard</h4>
+							<i class="fa fa-rocket fa-2x" aria-hidden="true"></i>
+						</span>
+					</div>
+
+					<hr>
+
+					<nav id="dashboard-nav" class="navbar">
+
+						<ul class="navbar-nav">
+
+							<div class="navbar-category">Models</div>
+
+							<li class="nav-item">
+								<a class="nav-link" id="list-users-tab" data-toggle="tab" href="#list-users">
+									<i class="fa fa-user" aria-hidden="true"></i> Users
+								</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" id="list-stores-tab" data-toggle="tab" href="#list-stores">
+									<i class="fa fa-building" aria-hidden="true"></i> Stores
+								</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" id="list-products-tab" data-toggle="tab" href="#list-products">
+									<i class="fa fa-tag" aria-hidden="true"></i> Products
+								</a>
+							</li>
+
+							<hr>
+
+							<div class="navbar-category">Statistics</div>
+						</ul>
+
+					</nav>
+
+
+				</div>
+
+			</div>
+
+			<!--Main view col-->
+			<div class="col-10">
+
+				<!--Main view container-->
+				<div id="main-view">
+					<div class="tab-content" id="nav-tabContent">
+
+						<!--Users-->
+						<div class="tab-pane  show active" id="list-users">
+							Users
+						</div>
+
+						<!--Stores-->
+						<div class="tab-pane" id="list-stores">
+							Stores
+						</div>
+
+						<!--Products-->
+						<div class="tab-pane" id="list-products">
+							Products
+						</div>
+
+					  </div>
+				</div>
+
+			</div>
+
 		</div>
+
 	</div>
+
 
 	<!--Footer fragment-->
 	<div id="footer-fragment"></div>
@@ -34,6 +112,9 @@
 
 	<!-- Script for fetching, rendering & manipulating the navbar and footer -->
 	<script src="/js/load_fragments.js"></script>
+
+	<!-- Script for dashboard functionality -->
+	<script src="/js/dashboard.js"></script>
 
 </body>
 
